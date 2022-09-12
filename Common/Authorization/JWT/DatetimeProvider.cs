@@ -1,4 +1,4 @@
-﻿namespace Common.Authorization.JWT
+﻿namespace Application.Authorization.JWT
 {
     public interface IDatetimeProvider
     {

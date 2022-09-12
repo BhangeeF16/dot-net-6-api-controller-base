@@ -1,5 +1,4 @@
-﻿using Common;
-using Common.Middlewares;
+﻿using Application.Middlewares;
 
 namespace WebAPI.Extensions;
 

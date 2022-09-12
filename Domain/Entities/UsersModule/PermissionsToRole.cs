@@ -18,6 +18,5 @@ namespace Domain.Entities.UsersModule
         public bool CanDeleteUser { get; set; }
 
         #endregion
-
     }
 }

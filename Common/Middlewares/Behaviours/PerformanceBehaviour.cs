@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-namespace Common.Middlewares.Behaviours;
+namespace Application.Middlewares.Behaviours;
 
 public class PerformanceBehaviour
 {

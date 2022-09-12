@@ -1,4 +1,4 @@
-﻿namespace Common.Authorization.PolicyAuth
+﻿namespace Application.Authorization.PolicyAuth
 {
     public class PolicyLegend
     {

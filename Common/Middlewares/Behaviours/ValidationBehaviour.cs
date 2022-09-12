@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
-namespace Common.Middlewares.Behaviours;
+namespace Application.Middlewares.Behaviours;
 
 public class ValidationBehaviour
 {

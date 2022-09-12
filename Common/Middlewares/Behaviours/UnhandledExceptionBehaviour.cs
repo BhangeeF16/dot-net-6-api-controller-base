@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Common.Middlewares.Behaviours;
+namespace Application.Middlewares.Behaviours;
 
 public class UnhandledExceptionBehaviour
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace Common.Authorization.PolicyAuth.PermissionsPolicy
+namespace Application.Authorization.PolicyAuth.PermissionsPolicy
 {
     public class IsAllowedRequirement : IAuthorizationRequirement
     {

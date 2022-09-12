@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace Common.Middlewares.Logging;
+namespace Application.Middlewares.Logging;
 
 public class RequestResponseLogging
 {

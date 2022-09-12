@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Net.Http.Headers;
 
-namespace Common.HelperServices
+namespace Application.HelperServices
 {
     public class UploadImageService : IUploadImageService
     {

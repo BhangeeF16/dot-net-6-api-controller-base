@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities.UsersModule;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence
 {
@@ -7,7 +8,8 @@ namespace Infrastructure.Persistence
 
         public static void SeedSampleDataAsync(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<UserRole>().HasData(SeedData.Roles);
+            modelBuilder.Entity<UserRole>().HasData(SeedData.Roles);
+            modelBuilder.Entity<User>().HasData(SeedData.User);
         }
     }
 

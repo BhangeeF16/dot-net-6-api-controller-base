@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
-namespace Common.Authorization.PolicyAuth.PermissionsPolicy
+namespace Application.Authorization.PolicyAuth.PermissionsPolicy
 {
     public class IsAllowedRequirementHandler : IAuthorizationHandler
     {

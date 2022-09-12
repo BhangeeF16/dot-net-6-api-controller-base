@@ -1,7 +1,7 @@
 ﻿using Domain.IServices.IAuthServices;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-namespace Common.Authorization.CurrentUserService
+namespace Application.Authorization.CurrentUserService
 {
     public class CurrentUserService : ICurrentUserService
     {
@@ -15,7 +15,7 @@ namespace Common.Authorization.CurrentUserService
             get
             {
                 var UserId = claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Sid, StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
-                return Convert.ToInt32(String.IsNullOrEmpty(UserId) ? 0 : UserId);
+                return Convert.ToInt32(string.IsNullOrEmpty(UserId) ? 0 : UserId);
             }
         }
         public string FirstName

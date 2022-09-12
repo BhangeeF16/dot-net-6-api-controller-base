@@ -7,19 +7,26 @@ using System.Text;
 
 namespace Domain.Common.Utilities
 {
-    public class PasswordHasher
+    public static class PasswordHasher
     {
-        #region
+        #region Salts/Keys
 
         private static readonly string key = "s0l@ra!b)AzP"; //Encryption key
 
         #endregion
 
-        #region Decrypt String
+        #region Encryption/Decryption
 
+        public static string Encrypt(string clearText)
+        {
+            var clearBytes = Encoding.Unicode.GetBytes(clearText);
+            var pdb = new PasswordDeriveBytes(key,
+                new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+            var encryptedData = Encrypt(clearBytes, pdb.GetBytes(16), pdb.GetBytes(16));
+            return Convert.ToBase64String(encryptedData);
+        }
         public static string Decrypt(string cipherText)
         {
-            var mod4 = cipherText.Length % 4;
             cipherText = cipherText.Replace(" ", "+");
             var cipherBytes = Convert.FromBase64String(cipherText);
             var pdb = new PasswordDeriveBytes(key,
@@ -29,11 +36,9 @@ namespace Domain.Common.Utilities
             return Encoding.Unicode.GetString(decryptedData);
         }
 
-        #endregion Decrypt String
-
-        #region Decrypt Bytes
-
-        public static byte[] Decrypt(byte[] cipherData, byte[] Key, byte[] IV)
+        #region Private Methods
+        
+        private static byte[] Decrypt(byte[] cipherData, byte[] Key, byte[] IV)
         {
             // Create a MemoryStream that is going to accept the decrypted bytes 
             var ms = new MemoryStream();
@@ -49,22 +54,7 @@ namespace Domain.Common.Utilities
             var decryptedData = ms.ToArray();
             return decryptedData;
         }
-        #endregion Decrypt Bytes
-
-        #region Encrypt String
-        public static string Encrypt(string clearText)
-        {
-            var clearBytes = Encoding.Unicode.GetBytes(clearText);
-            var pdb = new PasswordDeriveBytes(key,
-                new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-            var encryptedData = Encrypt(clearBytes, pdb.GetBytes(16), pdb.GetBytes(16));
-            return Convert.ToBase64String(encryptedData);
-        }
-        #endregion Encrypt String
-
-        #region Encrypt Bytes
-
-        public static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV)
+        private static byte[] Encrypt(byte[] clearData, byte[] Key, byte[] IV)
         {
             // Create a MemoryStream that is going to accept the encrypted bytes 
             var ms = new MemoryStream();
@@ -81,68 +71,11 @@ namespace Domain.Common.Utilities
             return encryptedData;
         }
 
-        #endregion Encrypt Bytes
+        #endregion
+
+        #endregion
 
         #region Hashing
-
-        public static byte[] GenerateSalt()
-        {
-            var minSaltSize = 4;
-            var maxSaltSize = 8;
-            // Generate a random number for the size of the salt.
-            var random = new Random();
-            var saltSize = random.Next(minSaltSize, maxSaltSize);
-
-            // Allocate a byte array, which will hold the salt.
-            var saltBytes = new byte[saltSize];
-
-            // Initialize a random number generator.
-            var rng = new RNGCryptoServiceProvider();
-            // Fill the salt with cryptographically strong byte values.
-            rng.GetNonZeroBytes(saltBytes);
-            return saltBytes;
-        }
-
-        public static string ComputeHash(string plainText, byte[] saltBytes)
-        {
-            // Convert plain text into a byte array.
-            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-
-            // Allocate array, which will hold plain text and salt.
-            var plainTextWithSaltBytes =
-                new byte[plainTextBytes.Length + saltBytes.Length];
-
-            // Copy plain text bytes into resulting array.
-            for (var i = 0; i < plainTextBytes.Length; i++)
-                plainTextWithSaltBytes[i] = plainTextBytes[i];
-
-            // Append salt bytes to the resulting array.
-            for (var i = 0; i < saltBytes.Length; i++)
-                plainTextWithSaltBytes[plainTextBytes.Length + i] = saltBytes[i];
-
-            // Initialize appropriate hashing algorithm class.
-            HashAlgorithm hash = new SHA256Managed();
-
-            // Compute hash value of our plain text with appended salt.
-            var hashBytes = hash.ComputeHash(plainTextWithSaltBytes);
-
-            // Create array which will hold hash and original salt bytes.
-            var hashWithSaltBytes = new byte[hashBytes.Length + saltBytes.Length];
-
-            // Copy hash bytes into resulting array.
-            for (var i = 0; i < hashBytes.Length; i++)
-                hashWithSaltBytes[i] = hashBytes[i];
-
-            // Append salt bytes to the result.
-            for (var i = 0; i < saltBytes.Length; i++)
-                hashWithSaltBytes[hashBytes.Length + i] = saltBytes[i];
-
-            // Convert result into a base64-encoded string.
-            var hashValue = Convert.ToBase64String(hashWithSaltBytes);
-
-            // Return the result.
-            return hashValue;
-        }
 
         public static bool VerifyHash(string plainText, string hashValue)
         {
@@ -183,7 +116,6 @@ namespace Domain.Common.Utilities
 
             return false;
         }
-
         public static string GeneratePasswordHash(string plainPasswordtext)
         {
             var passwordHash = string.Empty;
@@ -198,6 +130,68 @@ namespace Domain.Common.Utilities
 
             return passwordHash;
         }
+
+        #region Private methods
+
+        private static byte[] GenerateSalt()
+        {
+            var minSaltSize = 4;
+            var maxSaltSize = 8;
+            // Generate a random number for the size of the salt.
+            var random = new Random();
+            var saltSize = random.Next(minSaltSize, maxSaltSize);
+
+            // Allocate a byte array, which will hold the salt.
+            var saltBytes = new byte[saltSize];
+
+            // Initialize a random number generator.
+            var rng = new RNGCryptoServiceProvider();
+            // Fill the salt with cryptographically strong byte values.
+            rng.GetNonZeroBytes(saltBytes);
+            return saltBytes;
+        }
+        private static string ComputeHash(string plainText, byte[] saltBytes)
+        {
+            // Convert plain text into a byte array.
+            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+
+            // Allocate array, which will hold plain text and salt.
+            var plainTextWithSaltBytes =
+                new byte[plainTextBytes.Length + saltBytes.Length];
+
+            // Copy plain text bytes into resulting array.
+            for (var i = 0; i < plainTextBytes.Length; i++)
+                plainTextWithSaltBytes[i] = plainTextBytes[i];
+
+            // Append salt bytes to the resulting array.
+            for (var i = 0; i < saltBytes.Length; i++)
+                plainTextWithSaltBytes[plainTextBytes.Length + i] = saltBytes[i];
+
+            // Initialize appropriate hashing algorithm class.
+            HashAlgorithm hash = new SHA256Managed();
+
+            // Compute hash value of our plain text with appended salt.
+            var hashBytes = hash.ComputeHash(plainTextWithSaltBytes);
+
+            // Create array which will hold hash and original salt bytes.
+            var hashWithSaltBytes = new byte[hashBytes.Length + saltBytes.Length];
+
+            // Copy hash bytes into resulting array.
+            for (var i = 0; i < hashBytes.Length; i++)
+                hashWithSaltBytes[i] = hashBytes[i];
+
+            // Append salt bytes to the result.
+            for (var i = 0; i < saltBytes.Length; i++)
+                hashWithSaltBytes[hashBytes.Length + i] = saltBytes[i];
+
+            // Convert result into a base64-encoded string.
+            var hashValue = Convert.ToBase64String(hashWithSaltBytes);
+
+            // Return the result.
+            return hashValue;
+        }
+
+        #endregion
 
         #endregion
     }

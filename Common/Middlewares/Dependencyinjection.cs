@@ -1,8 +1,8 @@
-﻿using Common.Middlewares.Behaviours;
-using Common.Middlewares.Logging;
+﻿using Application.Middlewares.Behaviours;
+using Application.Middlewares.Logging;
 using Microsoft.AspNetCore.Builder;
 
-namespace Common.Middlewares;
+namespace Application.Middlewares;
 
 public static class Dependencyinjection
 {

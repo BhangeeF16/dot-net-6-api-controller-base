@@ -1,6 +1,6 @@
-﻿using Common.Authorization.JWT;
-using Common.Authorization.PolicyAuth;
-using Common.Authorization.PolicyAuth.PermissionsPolicy;
+﻿using Application.Authorization.JWT;
+using Application.Authorization.PolicyAuth;
+using Application.Authorization.PolicyAuth.PermissionsPolicy;
 using Domain.Common.AuthModels;
 using Domain.Entities.UsersModule;
 using Domain.IServices.IAuthServices;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 
-namespace Common.Authorization
+namespace Application.Authorization
 {
     public static class DependencyInjection
     {

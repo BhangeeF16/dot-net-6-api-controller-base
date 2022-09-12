@@ -1,5 +1,4 @@
-﻿using Common.Authorization.JWT;
-using Common.Authorization.PolicyAuth;
+﻿using Application.Authorization.PolicyAuth;
 using Domain.Common.DTO;
 using Domain.Common.RequestModels;
 using Domain.Common.ResponseModels;
@@ -111,7 +110,7 @@ namespace WebAPI.Controllers
                 }
             });
         }
-        
+
         [AllowAnonymous]
         [HttpPost("/users/login")]
         public async Task<IResult> LoginAsync(LoginRequestModel loginRequest)
@@ -159,7 +158,7 @@ namespace WebAPI.Controllers
                 });
             });
         }
-        
+
         [Authorize]
         [HttpPost("/users/change-password")]
         public async Task<IResult> ChangePassword(ChangePasswordRequestModel request)
@@ -176,7 +175,7 @@ namespace WebAPI.Controllers
                 });
             });
         }
-        
+
         [AllowAnonymous]
         [HttpPost("/users/forget-assword")]
         public async Task<IResult> ForgetPassword(ForgetPasswordRequestModel request)
