@@ -5,17 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities.GeneralModule;
 
-[Table("tbl_AppSetting")]
+[Table("AppSetting")]
 public class AppSetting
 {
     [Key]
     public int Id { get; set; }
+    [Required]
+    [MaxLength(50)]
     public string Name { get; set; }
+    [Required]
+    [MaxLength(50)]
     public string Value { get; set; }
+    [Required]
+    [MaxLength(50)]
     public string Label { get; set; }
+    [MaxLength(50)]
     public string Description { get; set; }
-
-    //[ForeignKey("CompanyInfo")]
-    //public int fk_CompanyId { get; set; }
-    //public virtual CompanyEntity CompanyInfo { get; set; }
 }

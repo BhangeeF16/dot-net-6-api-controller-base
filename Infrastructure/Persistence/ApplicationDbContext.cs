@@ -65,9 +65,9 @@ namespace Infrastructure.Persistence
 
         #region Genral Modules
 
-        public virtual DbSet<ApiCallLogs> ApiCallLogs { get; set; }
+        public virtual DbSet<ApiCallLog> ApiCallLogs { get; set; }
         public virtual DbSet<AppSetting> AppSettings { get; set; }
-        public virtual DbSet<MiddlewareLogs> MiddlewareLogs { get; set; }
+        public virtual DbSet<MiddlewareLog> MiddlewareLogs { get; set; }
 
         #endregion
 
