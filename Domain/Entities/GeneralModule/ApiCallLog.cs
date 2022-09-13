@@ -1,15 +1,19 @@
 ﻿#nullable disable
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities.GeneralModule;
 
-[Table("tbl_ApiCallLog")]
-public class ApiCallLogs
+[Table("ApiCallLog")]
+public class ApiCallLog
 {
     public int Id { get; set; }
+    [MaxLength(50)]
     public string EndPoint { get; set; }
+    [MaxLength(450)]
     public string Notes { get; set; }
+    [MaxLength(1000)]
     public string RequestUrl { get; set; }
     public string Response { get; set; }
     public int ResponseStatusCode { get; set; }

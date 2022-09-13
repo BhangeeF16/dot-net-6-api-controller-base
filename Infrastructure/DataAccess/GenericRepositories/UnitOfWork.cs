@@ -25,8 +25,8 @@ public class UnitOfWork : IUnitOfWork
     private readonly ConnectionInfo _connectionInfo;
     private IUserRepository? _userRepository;
     private IGenericRepository<UserRole>? _roleRepository;
-    private IGenericRepository<MiddlewareLogs>? _middlewareLogsRepository;
-    private IGenericRepository<ApiCallLogs>? _apiCallLogsRepository;
+    private IGenericRepository<MiddlewareLog>? _middlewareLogsRepository;
+    private IGenericRepository<ApiCallLog>? _apiCallLogsRepository;
     private IGenericRepository<AppSetting>? _appsettingsRepository;
 
     #endregion
@@ -51,21 +51,21 @@ public class UnitOfWork : IUnitOfWork
             return _roleRepository;
         }
     }
-    public IGenericRepository<MiddlewareLogs> MiddlewareLogsRepository
+    public IGenericRepository<MiddlewareLog> MiddlewareLogsRepository
     {
         get
         {
             if (_middlewareLogsRepository == null)
-                _middlewareLogsRepository = new GenericRepository<MiddlewareLogs>(_context, _connectionInfo);
+                _middlewareLogsRepository = new GenericRepository<MiddlewareLog>(_context, _connectionInfo);
             return _middlewareLogsRepository;
         }
     }
-    public IGenericRepository<ApiCallLogs> ApiCallLogsRepository
+    public IGenericRepository<ApiCallLog> ApiCallLogsRepository
     {
         get
         {
             if (_apiCallLogsRepository == null)
-                _apiCallLogsRepository = new GenericRepository<ApiCallLogs>(_context, _connectionInfo);
+                _apiCallLogsRepository = new GenericRepository<ApiCallLog>(_context, _connectionInfo);
             return _apiCallLogsRepository;
         }
     }

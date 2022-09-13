@@ -10,25 +10,34 @@ namespace Domain.Entities.UsersModule
         [Key]
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Username is must rquired")]
+        [Required]
+        [MaxLength(100)]
         public string? UserName { get; set; }
-        [Required(ErrorMessage = "Incorrect Password")]
-        public string Password { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string? Password { get; set; }
 
-
-        [Required(ErrorMessage = "First name is required")]
+        [Required]
+        [MaxLength(50)]
         public string? FirstName { get; set; }
-        [Required(ErrorMessage = "Last name is required")]
+        [Required]
+        [MaxLength(50)]
         public string? LastName { get; set; }
         public DateTime DOB { get; set; }
+        [Required]
+        [MaxLength(50)]
         public string? PhoneNumber { get; set; }
+        [Required]
+        [MaxLength(450)]
         public string? Address { get; set; }
         public Gender? Gender { get; set; }
         public Ethnicity? Ethnicity { get; set; }
         public CommunicationPreference? CommunicationPreference { get; set; }
+        [Required]
+        [MaxLength(50)]
         public string? ImageKey { get; set; }
-        public bool? IsOnBoarded { get; set; }
-        public bool IsPasswordChanged { get; set; }
+        public bool? IsOnBoarded { get; set; } = false;
+        public bool IsPasswordChanged { get; set; } = false;
 
         [ForeignKey("Role")]
         public int fk_RoleID { get; set; }

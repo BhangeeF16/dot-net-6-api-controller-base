@@ -15,7 +15,7 @@ public interface IUnitOfWork : IDisposable
     IUserRepository UserRepository { get; }
 
     IGenericRepository<UserRole> RoleRepository { get; }
-    IGenericRepository<MiddlewareLogs> MiddlewareLogsRepository { get; }
-    IGenericRepository<ApiCallLogs> ApiCallLogsRepository { get; }
+    IGenericRepository<MiddlewareLog> MiddlewareLogsRepository { get; }
+    IGenericRepository<ApiCallLog> ApiCallLogsRepository { get; }
     IGenericRepository<AppSetting> AppsettingsRepository { get; }
 }

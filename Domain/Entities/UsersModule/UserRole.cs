@@ -8,7 +8,8 @@ namespace Domain.Entities.UsersModule
     {
         [Key]
         public int ID { get; set; }
-        [Required(ErrorMessage = "Role is Required")]
+        [Required]
+        [MaxLength(50)]
         public string? RoleName { get; set; }
 
         public DateTime? CreatedAt { get; set; }

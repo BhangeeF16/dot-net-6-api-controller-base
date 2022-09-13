@@ -49,7 +49,7 @@ public class RequestResponseLogging
         }
     }
 
-    private static async Task<MiddlewareLogs> FormatRequest(HttpContext context)
+    private static async Task<MiddlewareLog> FormatRequest(HttpContext context)
     {
         context.Request.EnableBuffering();
 
@@ -60,7 +60,7 @@ public class RequestResponseLogging
         var bodyAsText = Encoding.UTF8.GetString(buffer);
         context.Request.Body.Position = 0;
 
-        var logDto = new MiddlewareLogs
+        var logDto = new MiddlewareLog
         {
             RequestAt = DateTime.Now,
             RequestURL = $"{context.Request.Scheme}://{context.Request.Host}{context.Request.Path} {context.Request.QueryString}".Trim(),
