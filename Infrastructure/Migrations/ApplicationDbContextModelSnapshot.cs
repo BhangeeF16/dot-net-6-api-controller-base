@@ -152,7 +152,6 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(450)
                         .HasColumnType("nvarchar(450)");
 
@@ -180,7 +179,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImageKey")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -237,7 +235,7 @@ namespace Infrastructure.Migrations
                             ID = 1,
                             Address = "",
                             CommunicationPreference = 3,
-                            DOB = new DateTime(2022, 9, 12, 17, 32, 25, 881, DateTimeKind.Utc).AddTicks(5335),
+                            DOB = new DateTime(2022, 9, 13, 16, 18, 5, 608, DateTimeKind.Utc).AddTicks(3032),
                             Ethnicity = 2,
                             FirstName = "Application",
                             Gender = 1,
@@ -247,7 +245,7 @@ namespace Infrastructure.Migrations
                             IsOnBoarded = true,
                             IsPasswordChanged = true,
                             LastName = "Admin",
-                            Password = "GkmYMta7A5B/egqMSaWB77l+i5Y/ffH17NZKgT+gV9AcgirfiA==",
+                            Password = "Op5iRyhQ8QrSiRlHgHIYOf41wWcfYokbGOWvhPrLEqKm1XKb",
                             PhoneNumber = "",
                             UserName = "admin@codered.com",
                             fk_RoleID = 1
@@ -315,6 +313,105 @@ namespace Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserShippingAddress", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TownCity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("fk_UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_UserID");
+
+                    b.ToTable("UserShippingAddress");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserStripeDetail", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("ConnectedAccountID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomerID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_UserID");
+
+                    b.ToTable("UserStripeDetail");
+                });
+
             modelBuilder.Entity("Domain.Entities.UsersModule.User", b =>
                 {
                     b.HasOne("Domain.Entities.UsersModule.UserRole", "Role")
@@ -324,6 +421,35 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserShippingAddress", b =>
+                {
+                    b.HasOne("Domain.Entities.UsersModule.User", "User")
+                        .WithMany("ShippingAddresses")
+                        .HasForeignKey("fk_UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserStripeDetail", b =>
+                {
+                    b.HasOne("Domain.Entities.UsersModule.User", "User")
+                        .WithMany("StripeDetails")
+                        .HasForeignKey("fk_UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.User", b =>
+                {
+                    b.Navigation("ShippingAddresses");
+
+                    b.Navigation("StripeDetails");
                 });
 #pragma warning restore 612, 618
         }
