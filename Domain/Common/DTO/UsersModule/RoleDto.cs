@@ -2,7 +2,7 @@
 using Domain.Entities.UsersModule;
 using Domain.IServices.IMapperServices;
 
-namespace Domain.Common.DTO
+namespace Domain.Common.DTO.UsersModule
 {
     public class RoleDto : PermissionsToRole, IMapFrom<RoleDto>
     {

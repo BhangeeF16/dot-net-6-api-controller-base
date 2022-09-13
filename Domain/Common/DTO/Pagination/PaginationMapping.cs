@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.GeneralModule.Pagination
+﻿namespace Domain.Common.DTO.Pagination
 {
     public static class PaginationMapping
     {

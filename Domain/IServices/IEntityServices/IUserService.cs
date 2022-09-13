@@ -1,5 +1,5 @@
-﻿using Domain.Common.DTO;
-using Domain.Common.RequestModels;
+﻿using Domain.Common.DTO.UsersModule;
+using Domain.Common.RequestModels.UserRequests;
 using Domain.Common.ResponseModels;
 
 namespace Domain.IServices.IEntityServices
@@ -9,12 +9,12 @@ namespace Domain.IServices.IEntityServices
         Task<UserLoginResponseModel> LoginRequestAsync(string Email, string Password);
         Task<RegisterRequestModel> RegisterRequestAsync(RegisterRequestModel model);
         Task<UserLoginResponseModel> ForgetPasswordRequestAsync(string Email);
-        Task<UserLoginResponseModel> ChangePasswordAsync(ChangePasswordRequestModel request);
+        Task<UserLoginResponseModel> ChangePasswordAsync(UpdatePasswordRequestModel request);
         Task<UserDto> GetRequestAsync(int id);
         Task<UserDto> GetCurrentUserRequestAsync();
-        Task<UserDto> AddRequestAsync(UserDto model);
-        Task<UserDto> UpdateRequestAsync(UserDto model);
-        Task<UserDto> UpdateCurrentUserRequestAsync(UserUpdateRequest model, string UploadedImage);
+        Task<UserDto> AddRequestAsync(UpsertUserRequest model);
+        Task<UserDto> UpdateRequestAsync(UpsertUserRequest model);
+        Task<UserDto> UpdateCurrentUserRequestAsync(UpdateCurrentUserRequest model, string UploadedImage);
         Task<bool> DeleteRequestAsync(int id);
         Task<bool> DoesExistAsync(int Id);
         Task<bool> DoesExistAsync(string Email);

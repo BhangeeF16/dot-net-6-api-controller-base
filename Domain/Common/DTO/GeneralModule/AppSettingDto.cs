@@ -3,7 +3,7 @@ using Domain.Entities.GeneralModule;
 
 #nullable disable
 
-namespace Domain.Common.DTO
+namespace Domain.Common.DTO.GeneralModule
 {
     public partial class AppSettingDto
     {

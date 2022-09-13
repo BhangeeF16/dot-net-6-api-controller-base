@@ -37,7 +37,7 @@ namespace Domain.Common.Utilities
         }
 
         #region Private Methods
-        
+
         private static byte[] Decrypt(byte[] cipherData, byte[] Key, byte[] IV)
         {
             // Create a MemoryStream that is going to accept the decrypted bytes 

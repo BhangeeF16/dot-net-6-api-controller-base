@@ -27,13 +27,11 @@ namespace Domain.Entities.UsersModule
         [Required]
         [MaxLength(50)]
         public string? PhoneNumber { get; set; }
-        [Required]
         [MaxLength(450)]
         public string? Address { get; set; }
         public Gender? Gender { get; set; }
         public Ethnicity? Ethnicity { get; set; }
         public CommunicationPreference? CommunicationPreference { get; set; }
-        [Required]
         [MaxLength(50)]
         public string? ImageKey { get; set; }
         public bool? IsOnBoarded { get; set; } = false;
@@ -43,5 +41,7 @@ namespace Domain.Entities.UsersModule
         public int fk_RoleID { get; set; }
 
         public virtual UserRole? Role { get; set; }
+        public virtual List<UserStripeDetail>? StripeDetails { get; set; }
+        public virtual List<UserShippingAddress>? ShippingAddresses { get; set; }
     }
 }

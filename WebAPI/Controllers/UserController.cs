@@ -1,6 +1,7 @@
 ﻿using Application.Authorization.PolicyAuth;
 using Domain.Common.DTO;
 using Domain.Common.RequestModels;
+using Domain.Common.RequestModels.UserRequests;
 using Domain.Common.ResponseModels;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
@@ -64,7 +65,7 @@ namespace WebAPI.Controllers
             {
                 var baseUrl = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host;
                 var response = await _userService.GetCurrentUserRequestAsync();
-                response.Image = string.IsNullOrEmpty(response.Image) ? string.Empty : _uploadImageService.GetImageCompleteUrl(baseUrl, response.Image);
+                response.ImageKey = string.IsNullOrEmpty(response.ImageKey) ? string.Empty : _uploadImageService.GetImageCompleteUrl(baseUrl, response.ImageKey);
                 return Results.Ok(new SuccessResponseModel()
                 {
                     Message = "Success",
@@ -144,7 +145,7 @@ namespace WebAPI.Controllers
 
         [HttpPost("/users")]
         [Authorize(Policy = PolicyLegend.CanAddUser)]
-        public async Task<IResult> AddAsync(UserDto userDto)
+        public async Task<IResult> AddAsync(UpsertUserRequest userDto)
         {
             return await CreateResponseAsync(async () =>
             {
@@ -161,7 +162,7 @@ namespace WebAPI.Controllers
 
         [Authorize]
         [HttpPost("/users/change-password")]
-        public async Task<IResult> ChangePassword(ChangePasswordRequestModel request)
+        public async Task<IResult> ChangePassword(UpdatePasswordRequestModel request)
         {
             return await CreateResponseAsync(async () =>
             {
@@ -199,7 +200,7 @@ namespace WebAPI.Controllers
 
         [HttpPut("/users")]
         [Authorize(Policy = PolicyLegend.CanEditUser)]
-        public async Task<IResult> UpdateAsync(UserDto request)
+        public async Task<IResult> UpdateAsync(UpsertUserRequest request)
         {
             return await CreateResponseAsync(async () =>
             {
@@ -215,7 +216,7 @@ namespace WebAPI.Controllers
         }
         [Authorize]
         [HttpPut("/users/me")]
-        public async Task<IResult> UpdateMeAsync([FromForm] UserUpdateRequest request)
+        public async Task<IResult> UpdateMeAsync([FromForm] UpdateCurrentUserRequest request)
         {
             return await CreateResponseAsync(async () =>
             {
@@ -224,7 +225,7 @@ namespace WebAPI.Controllers
                 var thisUsersProfile = request.Image != null ? _uploadImageService.UploadImage(request.Image, baseUrl, physicalPath) : string.Empty;
 
                 var response = await _userService.UpdateCurrentUserRequestAsync(request, thisUsersProfile);
-                response.Image = string.IsNullOrEmpty(response.Image) ? string.Empty : _uploadImageService.GetImageCompleteUrl(baseUrl, response.Image);
+                response.ImageKey = string.IsNullOrEmpty(response.ImageKey) ? string.Empty : _uploadImageService.GetImageCompleteUrl(baseUrl, response.ImageKey);
 
                 return Results.Ok(new SuccessResponseModel()
                 {

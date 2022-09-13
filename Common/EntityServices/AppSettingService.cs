@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Common.DTO;
+using Domain.Common.DTO.GeneralModule;
 using Domain.Common.Exceptions;
-using Domain.Common.RequestModels;
+using Domain.Common.RequestModels.GeneralRequests;
 using Domain.Entities.GeneralModule;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;

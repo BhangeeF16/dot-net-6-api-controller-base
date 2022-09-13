@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Common.DTO;
+using Domain.Common.DTO.UsersModule;
 using Domain.Common.Exceptions;
-using Domain.Common.RequestModels;
+using Domain.Common.RequestModels.UserRequests;
 using Domain.Common.ResponseModels;
 using Domain.Common.Utilities;
 using Domain.Entities.UsersModule;
@@ -62,7 +62,7 @@ namespace Application.EntityServices
             }
         }
 
-        public async Task<UserDto> AddRequestAsync(UserDto model)
+        public async Task<UserDto> AddRequestAsync(UpsertUserRequest model)
         {
             if (string.IsNullOrEmpty(model.UserName))
             {
@@ -85,9 +85,9 @@ namespace Application.EntityServices
             }
         }
 
-        public async Task<UserDto> UpdateRequestAsync(UserDto model)
+        public async Task<UserDto> UpdateRequestAsync(UpsertUserRequest model)
         {
-            var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == model.Id && x.IsActive == true && x.IsDeleted == false);
+            var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == model.ID && x.IsActive == true && x.IsDeleted == false);
             if (thisUser == null)
             {
                 throw new ClientException("No User Found", HttpStatusCode.NotFound);
@@ -96,18 +96,14 @@ namespace Application.EntityServices
             {
                 thisUser.FirstName = model.FirstName;
                 thisUser.LastName = model.LastName;
-                thisUser.UserName = model.UserName;
-                thisUser.DOB = model.DOB;
-                thisUser.Ethnicity = model.Ethnicity;
-                thisUser.Gender = model.Gender;
-                thisUser.Address = model.Address;
                 thisUser.PhoneNumber = model.PhoneNumber;
-                thisUser.fk_RoleID = model.fk_RoleId;
+                thisUser.UserName = model.UserName;
+                thisUser.fk_RoleID = model.fk_RoleID;
                 _unitOfWork.Complete();
             }
             return await Task.FromResult(_mapper.Map<UserDto>(thisUser));
         }
-        public async Task<UserDto> UpdateCurrentUserRequestAsync(UserUpdateRequest model, string UploadedImage)
+        public async Task<UserDto> UpdateCurrentUserRequestAsync(UpdateCurrentUserRequest model, string UploadedImage)
         {
             var userId = Convert.ToInt32(_currentUserService.UserID);
             var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == userId && x.IsActive == true && x.IsDeleted == false);
@@ -133,6 +129,7 @@ namespace Application.EntityServices
             }
             return await Task.FromResult(_mapper.Map<UserDto>(thisUser));
         }
+        
         public async Task<RegisterRequestModel> RegisterRequestAsync(RegisterRequestModel request)
         {
             if (request.Password != request.ConfirmPassword)
@@ -205,7 +202,7 @@ namespace Application.EntityServices
                 };
             }
         }
-        public async Task<UserLoginResponseModel> ChangePasswordAsync(ChangePasswordRequestModel request)
+        public async Task<UserLoginResponseModel> ChangePasswordAsync(UpdatePasswordRequestModel request)
         {
             try
             {
@@ -335,6 +332,7 @@ namespace Application.EntityServices
                 };
             }
         }
+        
         public async Task<bool> DoesExistAsync(int Id)
         {
             var IsExist = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == Id && x.IsActive == true && x.IsDeleted == false);
@@ -353,10 +351,6 @@ namespace Application.EntityServices
             }
             return false;
         }
-        private static string GetRandomPassword()
-        {
-            return Guid.NewGuid().ToString().Replace("-", "")[..8];
-        }
 
         public async Task<bool> DeleteRequestAsync(int id)
         {
@@ -372,6 +366,10 @@ namespace Application.EntityServices
             _unitOfWork.Complete();
             return true;
         }
-
+     
+        private static string GetRandomPassword()
+        {
+            return Guid.NewGuid().ToString().Replace("-", "")[..8];
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Authorization.PolicyAuth;
 using Application.EntityServices;
 using Domain.Common.RequestModels;
+using Domain.Common.RequestModels.GeneralRequests;
 using Domain.Common.ResponseModels;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;

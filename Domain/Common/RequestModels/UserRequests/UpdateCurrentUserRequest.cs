@@ -2,11 +2,10 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
 
-namespace Domain.Common.RequestModels
+namespace Domain.Common.RequestModels.UserRequests
 {
-    public class UserUpdateRequest
+    public class UpdateCurrentUserRequest
     {
         [FromForm]
         public string? FirstName { get; set; }
@@ -68,7 +67,7 @@ namespace Domain.Common.RequestModels
         //    return ValueTask.FromResult<UserUpdateRequest?>(result);
         //}
     }
-    public class UpdateOperatorRequestValidator : AbstractValidator<UserUpdateRequest>
+    public class UpdateOperatorRequestValidator : AbstractValidator<UpdateCurrentUserRequest>
     {
         public UpdateOperatorRequestValidator()
         {

@@ -1,4 +1,4 @@
-﻿using Domain.Common.DTO;
+﻿using Domain.Common.DTO.UsersModule;
 
 namespace Domain.IServices.IEntityServices
 {

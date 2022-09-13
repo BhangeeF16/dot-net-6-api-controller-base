@@ -1,7 +1,7 @@
-﻿namespace Domain.Common.RequestModels;
+﻿namespace Domain.Common.RequestModels.UserRequests;
 
 
-public class ChangePasswordRequestModel
+public class UpdatePasswordRequestModel
 {
     public string? NewPassword { get; set; }
     public string? PasswordConfirmation { get; set; }

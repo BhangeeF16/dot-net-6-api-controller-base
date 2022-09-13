@@ -1,5 +1,5 @@
-﻿using Domain.Common.DTO;
-using Domain.Common.RequestModels;
+﻿using Domain.Common.DTO.GeneralModule;
+using Domain.Common.RequestModels.GeneralRequests;
 
 namespace Domain.IServices.IEntityServices
 {

@@ -1,5 +1,5 @@
 ﻿using Domain.Common.DataAccessHelpers;
-using Domain.Entities.GeneralModule.Pagination;
+using Domain.Common.DTO.Pagination;
 using Domain.IRepositories.IGenericRepositories;
 using Infrastructure.Persistence;
 using Microsoft.Data.SqlClient;

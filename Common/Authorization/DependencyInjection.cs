@@ -1,7 +1,7 @@
 ﻿using Application.Authorization.JWT;
 using Application.Authorization.PolicyAuth;
 using Application.Authorization.PolicyAuth.PermissionsPolicy;
-using Domain.Common.AuthModels;
+using Domain.Common.DTO.AuthModels;
 using Domain.Entities.UsersModule;
 using Domain.IServices.IAuthServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

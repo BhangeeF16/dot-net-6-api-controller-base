@@ -1,4 +1,4 @@
-﻿namespace Domain.Common.AuthModels
+﻿namespace Domain.Common.DTO.AuthModels
 {
     public class JwtSettings
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Reflection;
 
-namespace Domain.Entities.GeneralModule.Pagination
+namespace Domain.Common.DTO.Pagination
 {
     public partial class Pagination
     {

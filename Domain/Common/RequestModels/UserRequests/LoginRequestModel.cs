@@ -1,7 +1,7 @@
 ﻿#nullable disable
 
 
-namespace Domain.Common.RequestModels
+namespace Domain.Common.RequestModels.UserRequests
 {
     public class LoginRequestModel
     {

@@ -1,4 +1,4 @@
-﻿using Domain.Entities.GeneralModule.Pagination;
+﻿using Domain.Common.DTO.Pagination;
 using Microsoft.Data.SqlClient;
 using System.Data;
 

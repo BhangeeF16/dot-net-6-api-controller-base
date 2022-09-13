@@ -1,4 +1,4 @@
-﻿namespace Domain.Common.RequestModels
+﻿namespace Domain.Common.RequestModels.UserRequests
 {
     public class RegisterRequestModel
     {

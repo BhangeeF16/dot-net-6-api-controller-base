@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Domain.Common.DTO;
+using Domain.Common.DTO.UsersModule;
 using Domain.Common.Exceptions;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;

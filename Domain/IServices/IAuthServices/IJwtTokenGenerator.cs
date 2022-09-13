@@ -1,4 +1,4 @@
-﻿using Domain.Common.AuthModels;
+﻿using Domain.Common.DTO.AuthModels;
 using Domain.Entities.UsersModule;
 
 namespace Domain.IServices.IAuthServices

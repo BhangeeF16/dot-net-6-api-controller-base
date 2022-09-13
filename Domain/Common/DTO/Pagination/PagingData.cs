@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Domain.Entities.GeneralModule.Pagination
+namespace Domain.Common.DTO.Pagination
 {
     public class PagingData
     {

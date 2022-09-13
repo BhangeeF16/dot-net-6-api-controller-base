@@ -1,4 +1,4 @@
-﻿using Domain.Common.AuthModels;
+﻿using Domain.Common.DTO.AuthModels;
 using Domain.Entities.UsersModule;
 using Domain.IServices.IAuthServices;
 using Microsoft.Extensions.Options;
