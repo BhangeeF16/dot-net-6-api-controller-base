@@ -1,16 +1,15 @@
 ﻿using FluentValidation;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Domain;
 
-public static class DependencyInjection
+public static class Dependencyinjection
 {
-    public static IServiceCollection AddDomainLayerServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDomainLayerServices(this IServiceCollection services)
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        services.AddAutoMapper(Assembly.GetExecutingAssembly())
+                .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         return services;
     }

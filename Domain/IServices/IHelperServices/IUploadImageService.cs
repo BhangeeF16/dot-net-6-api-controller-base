@@ -5,8 +5,8 @@ namespace Domain.IServices.IHelperServices
     public interface IUploadImageService
     {
         string GetMimeType(string fileName);
-        string GetImageCompleteUrl(string BaseUrl, string Image);
-        string UploadImage(IFormFile file, string BaseUrl, string physicalPath);
-        bool DeleteAttachment(string BaseUrl, string Image);
+        string GetImageCompleteUrl(string Image);
+        string UploadFile(IFormFile file, string DirectoryName = "DEFAULT");
+        bool DeleteFile( string Image);
     }
 }

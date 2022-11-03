@@ -13,15 +13,11 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructureLayerServices(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("SQLSERVER_CON_STR");
-        services.Add(new ServiceDescriptor(typeof(ConnectionInfo), new ConnectionInfo()
-        {
-            ConnectionString = connectionString
-        }));
 
-        services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    connectionString ?? string.Empty,
-                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+        services.Add(new ServiceDescriptor(typeof(ConnectionInfo), new ConnectionInfo(connectionString)));
+
+        services.AddDbContext<ApplicationDbContext>(options => 
+                options.UseSqlServer( connectionString ?? string.Empty, b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

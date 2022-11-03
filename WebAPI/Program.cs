@@ -1,4 +1,5 @@
 using Application;
+using Application.Pipeline.Middlewares;
 using WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.UseSwagger();
+builder.Services.UseSwagger(builder.Environment);
 
 builder.Services.InjectDependencies(builder.Configuration);
 builder.Services.AddHealthChecks();
@@ -34,7 +35,7 @@ app.UseCors("corsapp");
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.AddMiddleWares();
+app.UseMiddlewares();
 app.UseHealthChecks("/health");
 
 app.UseSwagger();

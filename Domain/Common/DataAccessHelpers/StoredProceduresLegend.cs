@@ -2,6 +2,6 @@
 {
     public static class StoredProceduresLegend
     {
-        public const string GetCompanysUsers = "gp_GetCompanysUsers";
+        public const string GetJobPosts = "jf_GetJobPosts";
     }
 }

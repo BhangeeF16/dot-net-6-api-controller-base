@@ -7,25 +7,44 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Common\EmailTemplates\ForgetPasswordTemplate.html" />
+    <None Remove="Common\HtmlTemplates\EducationExpeienceListItem.html" />
+    <None Remove="Common\HtmlTemplates\ForgetPasswordTemplate.html" />
+    <None Remove="Common\HtmlTemplates\JobExpeienceListItem.html" />
+    <None Remove="Common\HtmlTemplates\ResumeTemplate.html" />
+    <None Remove="Common\HtmlTemplates\ResumeTemplateForCVGenrator.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Common\EmailTemplates\ForgetPasswordTemplate.html">
+    <Content Include="Common\HtmlTemplates\EducationExpeienceListItem.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Common\HtmlTemplates\ForgetPasswordTemplate.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Common\HtmlTemplates\JobExpeienceListItem.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Common\HtmlTemplates\ResumeTemplate.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Common\HtmlTemplates\ResumeTemplateForCVGenrator.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="FluentValidation" Version="11.2.1" />
-    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.0">
+      <TreatAsUsed>true</TreatAsUsed>
+    </PackageReference>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.2.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NReco.PdfGenerator.LT" Version="1.1.17" />
   </ItemGroup>
 
 </Project>

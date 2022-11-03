@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Domain.Common.MapperService;
 using Domain.Entities.UsersModule;
-using Domain.IServices.IMapperServices;
 
 namespace Domain.Common.RequestModels.UserRequests
 {

@@ -1,4 +1,5 @@
 ﻿using Domain.IServices.IHelperServices;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
 using System.Net.Http.Headers;
@@ -7,14 +8,29 @@ namespace Application.HelperServices
 {
     public class UploadImageService : IUploadImageService
     {
+        #region Constructors And Locals
+
+        protected readonly string BaseUrl;
+        protected readonly string PhysicalPath;
         public const string FolderName = "wwwroot//Uploads";
-        public UploadImageService()
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly HttpContext _httpContext;
+        public UploadImageService(IWebHostEnvironment webHostEnvironment, HttpContext httpContext)
         {
+            _webHostEnvironment = webHostEnvironment;
+            _httpContext = httpContext;
+
+            BaseUrl = $"{_httpContext.Request.Scheme}://{_httpContext.Request.Host}";
+            PhysicalPath = _webHostEnvironment.ContentRootPath;
+
             if (!Directory.Exists(FolderName))
             {
                 Directory.CreateDirectory(FolderName);
             }
         }
+
+        #endregion
+        
         public string GetMimeType(string fileName)
         {
             var provider = new FileExtensionContentTypeProvider();
@@ -25,13 +41,28 @@ namespace Application.HelperServices
             }
             return contentType;
         }
-        public string GetImageCompleteUrl(string BaseUrl, string Image)
+        public bool DeleteFile(string Image)
+        {
+            var pathToDelete = Path.Combine(BaseUrl, "wwwroot");
+            var fullPathUrl = Path.Combine(pathToDelete, Image);
+            var file = new FileInfo(fullPathUrl);
+            if (file.Exists)
+            {
+                file.Delete();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public string GetImageCompleteUrl(string Image)
         {
             return $"{BaseUrl}//{Image}".Replace("\\", "//");
         }
-        public string UploadImage(IFormFile file, string BaseUrl, string physicalPath)
+        public string UploadFile(IFormFile file, string DirectoryName = "DEFAULT")
         {
-            var pathToSave = $"{physicalPath}//{FolderName}";
+            var pathToSave = $"{PhysicalPath}//{FolderName}//{DirectoryName}";
             var responsePath = $"{BaseUrl}//{FolderName}";
 
             if (file.Length > 0)
@@ -51,24 +82,13 @@ namespace Application.HelperServices
             }
             return string.Empty;
         }
-        public bool DeleteAttachment(string BaseUrl, string Image)
-        {
-            var pathToDelete = Path.Combine(BaseUrl, "wwwroot");
-            var fullPathUrl = Path.Combine(pathToDelete, Image);
-            var file = new FileInfo(fullPathUrl);
-            if (file.Exists)
-            {
-                file.Delete();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         private static bool UploadFile(string savingPath, IFormFile file)
         {
             var check = false;
+            if (!Directory.Exists(savingPath))
+            {
+                Directory.CreateDirectory(savingPath);
+            }
             using (var stream = new FileStream(savingPath.Replace("//", "\\"), FileMode.Create))
             {
                 file.CopyTo(stream);

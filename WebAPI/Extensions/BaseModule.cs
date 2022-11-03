@@ -1,5 +1,5 @@
 ﻿using Domain.Common.Exceptions;
-using Domain.Common.ResponseModels;
+using Domain.Common.Models.GeneralModels;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +12,12 @@ namespace WebAPI.Extensions
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserService _currentUserService;
-        public BaseModule(IUnitOfWork unitOfWork, ICurrentUserService currentUserService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public BaseModule(IUnitOfWork unitOfWork, ICurrentUserService currentUserService, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             _currentUserService = currentUserService;
+            _webHostEnvironment = webHostEnvironment;
         }
         #region Return Response Delegate
 

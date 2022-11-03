@@ -17,10 +17,386 @@ namespace Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Domain.Entities.CandidateModule.CandidateEducationExperience", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Details")
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InstitueName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPresentExperience")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LevelOfEdujcation")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("fk_CandidateProfileID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_SubjectID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_CandidateProfileID");
+
+                    b.HasIndex("fk_SubjectID");
+
+                    b.ToTable("CandidateEducationExperience");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CandidateModule.CandidateJobExperience", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("CorporateName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Details")
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EndedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPresentExperience")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoleName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("fk_CandidateProfileID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_CandidateProfileID");
+
+                    b.ToTable("CandidateJobExperience");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CandidateModule.CandidateResumeUploadDetail", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ResumeFileKey")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("fk_CandidateProfileID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_CandidateProfileID");
+
+                    b.ToTable("CandidateResumeUploadDetail");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CandidateModule.EducationSubject", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Subject")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("EducationSubject");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Subject = "Business"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Subject = "Computer Science"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Subject = "Medical"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Subject = "Engineering"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.CorporateModule.Corporate", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Company")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("HeadQuarterContact")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("HeadQuarterName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Logo")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfEmployees")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Corporate");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CorporateModule.CorporateJob", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobTitle")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("JobType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkPlaceType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_CorporateID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_JobPostedByProfileID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_CorporateID");
+
+                    b.HasIndex("fk_JobPostedByProfileID");
+
+                    b.HasIndex("fk_PostID");
+
+                    b.ToTable("CorporateJob");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CorporateModule.JobApplicant", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_CandidateProfileID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_CandidateResumeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_CorporateJobID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_CandidateProfileID");
+
+                    b.HasIndex("fk_CandidateResumeID");
+
+                    b.HasIndex("fk_CorporateJobID");
+
+                    b.ToTable("JobApplicant");
+                });
 
             modelBuilder.Entity("Domain.Entities.GeneralModule.ApiCallLog", b =>
                 {
@@ -143,6 +519,517 @@ namespace Infrastructure.Migrations
                     b.ToTable("MiddlewareLog");
                 });
 
+            modelBuilder.Entity("Domain.Entities.PostModule.Post", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("fk_CommentSettingID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostTypeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostViewSettingID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_CommentSettingID");
+
+                    b.HasIndex("fk_PostTypeID");
+
+                    b.HasIndex("fk_PostViewSettingID");
+
+                    b.ToTable("Post");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostComment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_PostID");
+
+                    b.ToTable("PostComment");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostCommentSetting", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Label")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("PostCommentSetting");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Description = "No one is allowed to comment",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Turned Off"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Description = "Only I can comment on this post",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Only Me"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Description = "Everyone can comment on this post",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Default"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostFile", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileKey")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MimeType")
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_PostID");
+
+                    b.ToTable("PostFile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostReaction", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostReactionTypeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_PostID");
+
+                    b.HasIndex("fk_PostReactionTypeID");
+
+                    b.ToTable("PostReaction");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostReactionType", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IconKey")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Label")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("PostReactionType");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Like"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Curious"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Helped"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Support"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostShare", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_PostID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_PostID");
+
+                    b.ToTable("PostShare");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostTag", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("fk_PostID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_PostID");
+
+                    b.ToTable("PostTag");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostType", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Label")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("PostType");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Ordinary"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Job"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Poll"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Celebration"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostViewSetting", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Label")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("PostViewSetting");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Description = "Anyone can view this post",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Anyone"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Description = "No one can view this post",
+                            IsActive = true,
+                            IsDeleted = false,
+                            Label = "Only Me"
+                        });
+                });
+
             modelBuilder.Entity("Domain.Entities.UsersModule.User", b =>
                 {
                     b.Property<int>("ID")
@@ -207,8 +1094,8 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(450)
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -228,28 +1115,109 @@ namespace Infrastructure.Migrations
                     b.HasIndex("fk_RoleID");
 
                     b.ToTable("User");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Address = "",
-                            CommunicationPreference = 3,
-                            DOB = new DateTime(2022, 9, 13, 16, 18, 5, 608, DateTimeKind.Utc).AddTicks(3032),
-                            Ethnicity = 2,
-                            FirstName = "Application",
-                            Gender = 1,
-                            ImageKey = "",
-                            IsActive = true,
-                            IsDeleted = false,
-                            IsOnBoarded = true,
-                            IsPasswordChanged = true,
-                            LastName = "Admin",
-                            Password = "Op5iRyhQ8QrSiRlHgHIYOf41wWcfYokbGOWvhPrLEqKm1XKb",
-                            PhoneNumber = "",
-                            UserName = "admin@codered.com",
-                            fk_RoleID = 1
-                        });
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserCandidateProfile", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("About")
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FacecbookUserName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobTitle")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LinkedInUserName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_UserID")
+                        .IsUnique();
+
+                    b.ToTable("UserCandidateProfile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserCorporateProfile", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_CorporateID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("fk_UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("fk_CorporateID");
+
+                    b.HasIndex("fk_UserID")
+                        .IsUnique();
+
+                    b.ToTable("UserCorporateProfile");
                 });
 
             modelBuilder.Entity("Domain.Entities.UsersModule.UserRole", b =>
@@ -306,10 +1274,32 @@ namespace Infrastructure.Migrations
                             CanAddUser = true,
                             CanDeleteUser = true,
                             CanEditUser = true,
-                            CanViewUsers = false,
+                            CanViewUsers = true,
                             IsActive = true,
                             IsDeleted = false,
                             RoleName = "Application Admin"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CanAddUser = false,
+                            CanDeleteUser = false,
+                            CanEditUser = false,
+                            CanViewUsers = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            RoleName = "CorporateUser"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CanAddUser = false,
+                            CanDeleteUser = false,
+                            CanEditUser = false,
+                            CanViewUsers = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            RoleName = "CandidateUser"
                         });
                 });
 
@@ -412,6 +1402,191 @@ namespace Infrastructure.Migrations
                     b.ToTable("UserStripeDetail");
                 });
 
+            modelBuilder.Entity("Domain.Entities.CandidateModule.CandidateEducationExperience", b =>
+                {
+                    b.HasOne("Domain.Entities.UsersModule.UserCandidateProfile", "CandidateProfile")
+                        .WithMany("EducationExperiences")
+                        .HasForeignKey("fk_CandidateProfileID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.CandidateModule.EducationSubject", "EducationSubject")
+                        .WithMany("EducationExperiences")
+                        .HasForeignKey("fk_SubjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CandidateProfile");
+
+                    b.Navigation("EducationSubject");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CandidateModule.CandidateJobExperience", b =>
+                {
+                    b.HasOne("Domain.Entities.UsersModule.UserCandidateProfile", "CandidateProfile")
+                        .WithMany("JobExperiences")
+                        .HasForeignKey("fk_CandidateProfileID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CandidateProfile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CandidateModule.CandidateResumeUploadDetail", b =>
+                {
+                    b.HasOne("Domain.Entities.UsersModule.UserCandidateProfile", "CandidateProfile")
+                        .WithMany("CandidateResumeUploadDetails")
+                        .HasForeignKey("fk_CandidateProfileID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CandidateProfile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CorporateModule.CorporateJob", b =>
+                {
+                    b.HasOne("Domain.Entities.CorporateModule.Corporate", "Corporate")
+                        .WithMany("PostedJobs")
+                        .HasForeignKey("fk_CorporateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.UsersModule.UserCorporateProfile", "JobPostedByProfile")
+                        .WithMany("PostedJobs")
+                        .HasForeignKey("fk_JobPostedByProfileID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.PostModule.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("fk_PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Corporate");
+
+                    b.Navigation("JobPostedByProfile");
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CorporateModule.JobApplicant", b =>
+                {
+                    b.HasOne("Domain.Entities.UsersModule.UserCandidateProfile", "CandidateProfile")
+                        .WithMany("JobApplications")
+                        .HasForeignKey("fk_CandidateProfileID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.CandidateModule.CandidateResumeUploadDetail", "CandidateResume")
+                        .WithMany("Applications")
+                        .HasForeignKey("fk_CandidateResumeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.CorporateModule.CorporateJob", "CorporateJob")
+                        .WithMany("Applicants")
+                        .HasForeignKey("fk_CorporateJobID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CandidateProfile");
+
+                    b.Navigation("CandidateResume");
+
+                    b.Navigation("CorporateJob");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.Post", b =>
+                {
+                    b.HasOne("Domain.Entities.PostModule.PostCommentSetting", "CommentSetting")
+                        .WithMany()
+                        .HasForeignKey("fk_CommentSettingID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.PostModule.PostType", "PostType")
+                        .WithMany()
+                        .HasForeignKey("fk_PostTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.PostModule.PostViewSetting", "PostViewSetting")
+                        .WithMany()
+                        .HasForeignKey("fk_PostViewSettingID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CommentSetting");
+
+                    b.Navigation("PostType");
+
+                    b.Navigation("PostViewSetting");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostComment", b =>
+                {
+                    b.HasOne("Domain.Entities.PostModule.Post", "Post")
+                        .WithMany("Comments")
+                        .HasForeignKey("fk_PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostFile", b =>
+                {
+                    b.HasOne("Domain.Entities.PostModule.Post", "Post")
+                        .WithMany("Files")
+                        .HasForeignKey("fk_PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostReaction", b =>
+                {
+                    b.HasOne("Domain.Entities.PostModule.Post", "Post")
+                        .WithMany("Reactions")
+                        .HasForeignKey("fk_PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.PostModule.PostReactionType", "PostReactionType")
+                        .WithMany()
+                        .HasForeignKey("fk_PostReactionTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("PostReactionType");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostShare", b =>
+                {
+                    b.HasOne("Domain.Entities.PostModule.Post", "Post")
+                        .WithMany("Shares")
+                        .HasForeignKey("fk_PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.PostTag", b =>
+                {
+                    b.HasOne("Domain.Entities.PostModule.Post", "Post")
+                        .WithMany("Tags")
+                        .HasForeignKey("fk_PostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+                });
+
             modelBuilder.Entity("Domain.Entities.UsersModule.User", b =>
                 {
                     b.HasOne("Domain.Entities.UsersModule.UserRole", "Role")
@@ -421,6 +1596,36 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserCandidateProfile", b =>
+                {
+                    b.HasOne("Domain.Entities.UsersModule.User", "User")
+                        .WithOne("CandidateProfile")
+                        .HasForeignKey("Domain.Entities.UsersModule.UserCandidateProfile", "fk_UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserCorporateProfile", b =>
+                {
+                    b.HasOne("Domain.Entities.CorporateModule.Corporate", "Corporate")
+                        .WithMany()
+                        .HasForeignKey("fk_CorporateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.UsersModule.User", "User")
+                        .WithOne("CorporateProfile")
+                        .HasForeignKey("Domain.Entities.UsersModule.UserCorporateProfile", "fk_UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Corporate");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.UsersModule.UserShippingAddress", b =>
@@ -445,11 +1650,64 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.CandidateModule.CandidateResumeUploadDetail", b =>
+                {
+                    b.Navigation("Applications");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CandidateModule.EducationSubject", b =>
+                {
+                    b.Navigation("EducationExperiences");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CorporateModule.Corporate", b =>
+                {
+                    b.Navigation("PostedJobs");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CorporateModule.CorporateJob", b =>
+                {
+                    b.Navigation("Applicants");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PostModule.Post", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Files");
+
+                    b.Navigation("Reactions");
+
+                    b.Navigation("Shares");
+
+                    b.Navigation("Tags");
+                });
+
             modelBuilder.Entity("Domain.Entities.UsersModule.User", b =>
                 {
+                    b.Navigation("CandidateProfile");
+
+                    b.Navigation("CorporateProfile");
+
                     b.Navigation("ShippingAddresses");
 
                     b.Navigation("StripeDetails");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserCandidateProfile", b =>
+                {
+                    b.Navigation("CandidateResumeUploadDetails");
+
+                    b.Navigation("EducationExperiences");
+
+                    b.Navigation("JobApplications");
+
+                    b.Navigation("JobExperiences");
+                });
+
+            modelBuilder.Entity("Domain.Entities.UsersModule.UserCorporateProfile", b =>
+                {
+                    b.Navigation("PostedJobs");
                 });
 #pragma warning restore 612, 618
         }

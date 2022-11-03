@@ -14,7 +14,7 @@ namespace Domain.Entities.UsersModule
         [MaxLength(100)]
         public string? UserName { get; set; }
         [Required]
-        [MaxLength(50)]
+        [MaxLength(450)]
         public string? Password { get; set; }
 
         [Required]
@@ -41,6 +41,8 @@ namespace Domain.Entities.UsersModule
         public int fk_RoleID { get; set; }
 
         public virtual UserRole? Role { get; set; }
+        public virtual UserCorporateProfile? CorporateProfile { get; set; }
+        public virtual UserCandidateProfile? CandidateProfile { get; set; }
         public virtual List<UserStripeDetail>? StripeDetails { get; set; }
         public virtual List<UserShippingAddress>? ShippingAddresses { get; set; }
     }

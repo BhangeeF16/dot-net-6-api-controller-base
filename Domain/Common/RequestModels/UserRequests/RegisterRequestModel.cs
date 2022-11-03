@@ -11,5 +11,9 @@
         public string? PhoneNumber { get; set; }
         public int RoleID { get; set; }
 
+        public string? Company { get; set; } = string.Empty;
+        public string? HeadQuarterName { get; set; }
+        public string? HeadQuarterContact { get; set; }
+
     }
 }

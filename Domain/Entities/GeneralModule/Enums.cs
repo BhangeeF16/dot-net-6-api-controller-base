@@ -33,18 +33,56 @@ namespace Domain.Entities.GeneralModule
         [Description("Both")]
         Both = 3,
     }
-    public enum EventType
+    public enum BillAfter
     {
-        [Description("None")]
-        None = 1,
-        [Description("Reservation")]
-        Reservation = 2,
-        [Description("Vacation")]
-        Vacation = 3,
-        [Description("DayOff")]
-        DayOff = 4,
-        [Description("Booked")]
-        Booked = 5,
+        [Description("Day(s)")]
+        Day = 1,
+        [Description("Week(s)")]
+        Week = 2,
+        [Description("Month(s)")]
+        Month = 3,
+        [Description("Year(s)")]
+        Year = 4,
     }
-
+    public enum LevelOfEdujcation
+    {
+        [Description("Matric/O-Levels")]
+        Matric = 1,
+        [Description("Intermediate/A-Levels")]
+        Intermediate = 2,
+        [Description("Diploma")]
+        Diploma = 2,
+        [Description("Bachelors")]
+        Bachelors = 3,
+        [Description("Masters")]
+        Masters = 4,
+        [Description("Dr. of Philosopy")]
+        Philosophy = 5,
+    }
+    public enum WorkPlaceType
+    {
+        [Description("Remote")]
+        Remote = 1,
+        [Description("Hybrid")]
+        Hybrid = 2,
+        [Description("On-Site")]
+        OnSite = 3
+    }
+    public enum JobType
+    {
+        [Description("Full-time")]
+        FullTime = 1,
+        [Description("Part-time")]
+        PartTime = 2,
+        [Description("Contract")]
+        Contract = 3,
+        [Description("Temporary")]
+        Temporary = 4,
+        [Description("Other")]
+        Other = 5,
+        [Description("Voluteer")]
+        Volunteer = 6,
+        [Description("Internship")]
+        Internship = 7,
+    }
 }

@@ -1,4 +1,4 @@
-﻿using Domain.Common.DTO.Pagination;
+﻿using Domain.Common.DataAccessHelpers.Pagination;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
@@ -10,12 +10,18 @@ namespace Domain.IRepositories.IGenericRepositories
         void Attach(T obj);
         List<T> BindList(DataTable dt);
         SqlParameter CreateSqlParameter(string ParameterName, object value);
+
+
+        int ExecuteQueryScalar(string dmlQuery, params SqlParameter[] parameters);
+        void ExecuteQueryNonScalar(string dmlQuery, bool IsStoredProcedure = false, params SqlParameter[] parameters);
+
+        DataTable GetDataTableFromQuery(string sqlQuery, bool IsStoredProcedure = false, params SqlParameter[] parameters);
+        DataSet GetDataSetFromQuery(string sqlQuery, bool IsStoredProcedure = false, params SqlParameter[] parameters);
+        
         IQueryable<T> ExecuteSqlQuery(string sqlQuery, params SqlParameter[] parameters);
-        DataTable GetDataTableFromQuery(string sqlQuery, List<SqlParameter> parameters);
-        DataTable GetDataTableFromQuery(string sqlQuery, params SqlParameter[] parameters);
-        DataSet GetDataSetFromQuery(string sqlQuery, params SqlParameter[] parameters);
-        List<T> ExecuteSqlStoredProcedure(string sqlQuery, params SqlParameter[] parameters);
-        List<T> ExecuteSqlStoredProcedure(string sqlQuery, Pagination pagination, List<SqlParameter> parameters);
-        Task<PaginatedList<TResponse>> ExecuteSqlStoredProcedureAsync<TResponse>(string sqlQuery, Pagination pagination, List<SqlParameter> parameters) where TResponse : class;
+        
+        List<T> ExecuteSqlStoredProcedure(string StoredProcedureName, params SqlParameter[] parameters);
+        List<T> ExecuteSqlStoredProcedure(string StoredProcedureName, Pagination pagination, List<SqlParameter> parameters);
+        Task<PaginatedList<TResponse>> ExecuteSqlStoredProcedureAsync<TResponse>(string StoredProcedureName, Pagination pagination, List<SqlParameter> parameters) where TResponse : class;
     }
 }
