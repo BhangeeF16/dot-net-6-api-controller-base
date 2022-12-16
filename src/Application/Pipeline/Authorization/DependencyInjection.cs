@@ -85,7 +85,7 @@ namespace Application.Pipeline.Authorization
                 options.AddPolicy(
                     PolicyLegend.AdminOnly,
                     policyBuilder => policyBuilder
-                                        .RequireClaim(ClaimTypes.Role).RequireRole("2","1"));
+                                        .RequireClaim(ClaimTypes.Role).RequireRole("2", "1"));
 
                 //Application CandidateOnly Policy
                 options.AddPolicy(

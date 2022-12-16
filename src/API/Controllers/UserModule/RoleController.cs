@@ -1,4 +1,5 @@
-﻿using Domain.IRepositories.IGenericRepositories;
+﻿using API.Extensions;
+using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
 using Domain.IServices.IEntityServices.IUserModule;
 using Domain.Models.GeneralModels;
@@ -6,9 +7,8 @@ using Domain.Models.UsersModule;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using WebAPI.Extensions;
 
-namespace WebAPI.Controllers.UserModule
+namespace API.Controllers.UserModule
 {
     [Route("api/[controller]")]
     [ApiController]

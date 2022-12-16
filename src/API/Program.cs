@@ -1,6 +1,6 @@
+using API.Extensions;
 using Application;
 using Application.Pipeline.Middlewares;
-using WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

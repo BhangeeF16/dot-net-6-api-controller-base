@@ -1,4 +1,5 @@
-﻿using Application.Pipeline.Authorization.PolicyAuth;
+﻿using API.Extensions;
+using Application.Pipeline.Authorization.PolicyAuth;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
 using Domain.IServices.IEntityServices.IGeneralModule;
@@ -6,9 +7,8 @@ using Domain.Models.GeneralModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using WebAPI.Extensions;
 
-namespace WebAPI.Controllers.GeneralModule
+namespace API.Controllers.GeneralModule
 {
     [Route("api/[controller]")]
     [ApiController]

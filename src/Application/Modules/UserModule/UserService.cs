@@ -227,7 +227,7 @@ namespace Application.Modules.UserModule
                 Password = PasswordHasher.GeneratePasswordHash(request.Password),
                 fk_RoleID = request.RoleID,
             };
-            
+
             await _unitOfWork.UserRepository.AddAsync(newUser);
             _unitOfWork.Complete();
             return request;

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 
-namespace WebAPI.Extensions
+namespace API.Extensions
 {
     public class BaseModule : ControllerBase
     {

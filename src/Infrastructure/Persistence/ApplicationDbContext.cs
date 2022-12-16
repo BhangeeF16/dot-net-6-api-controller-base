@@ -21,7 +21,7 @@ namespace Infrastructure.Persistence
             _currentUserService = currentUserService;
             _connectionInfo = connectionInfo;
         }
-        
+
         //private readonly ICurrentUserService _currentUserService;
         //private readonly ConnectionInfo _connectionInfo;
         //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService, ConnectionInfo connectionInfo, IDomainEventDispatcher dispatcher) : base(options)
