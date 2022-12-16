@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 
 namespace WebAPI.Extensions
@@ -7,7 +8,8 @@ namespace WebAPI.Extensions
     {
         public static IServiceCollection UseSwagger(this IServiceCollection services, IWebHostEnvironment env)
         {
-            return services.AddSwaggerGen(c =>
+            string xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
@@ -17,18 +19,15 @@ namespace WebAPI.Extensions
                 });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
+                c.OperationFilter<SecurityRequirementsOperationFilter>(true, "Bearer");
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
+                    Description = "Standard Authorization header using the Bearer scheme (JWT).",
                     Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
                     Scheme = "Bearer",
-                    BearerFormat = "JWT",
+                    Type = SecuritySchemeType.Http,
                     In = ParameterLocation.Header,
-                    Description = "Authorization header using Bearer Scheme",
                 });
-
-                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -44,7 +43,17 @@ namespace WebAPI.Extensions
                         Array.Empty<string>()
                     }
                 });
+
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+                c.OperationFilter<SecurityRequirementsOperationFilter>(true, "Bearer");
+                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                c.EnableAnnotations();
             });
+
+            //services.AddFluentValidationRulesToSwagger();
+
+            return services;
         }
     }
 }

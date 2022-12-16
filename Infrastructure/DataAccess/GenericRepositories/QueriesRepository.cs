@@ -1,6 +1,6 @@
-﻿using Domain.Common.DataAccessHelpers;
-using Domain.Common.DataAccessHelpers.Pagination;
-using Domain.IRepositories.IGenericRepositories;
+﻿using Domain.IRepositories.IGenericRepositories;
+using Domain.Models.GeneralModels;
+using Domain.Models.Pagination;
 using Infrastructure.Persistence;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;

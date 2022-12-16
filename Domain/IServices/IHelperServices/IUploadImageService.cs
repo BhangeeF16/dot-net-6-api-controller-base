@@ -7,6 +7,6 @@ namespace Domain.IServices.IHelperServices
         string GetMimeType(string fileName);
         string GetImageCompleteUrl(string Image);
         string UploadFile(IFormFile file, string DirectoryName = "DEFAULT");
-        bool DeleteFile( string Image);
+        bool DeleteFile(string Image);
     }
 }

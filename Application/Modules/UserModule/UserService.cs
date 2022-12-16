@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using Domain.Common.Exceptions;
-using Domain.Common.Models.UserModule;
-using Domain.Common.RequestModels.UserRequests;
 using Domain.Common.Utilities;
 using Domain.Entities.UsersModule;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
 using Domain.IServices.IEntityServices.IUserModule;
 using Domain.IServices.IHelperServices;
+using Domain.Models.UsersModule;
+using Domain.RequestModels.UserRequests;
+using Domain.ResponseModels;
 using System.Net;
 
 namespace Application.Modules.UserModule
@@ -52,23 +53,13 @@ namespace Application.Modules.UserModule
         {
             try
             {
-                var userId = Convert.ToInt32(_currentUserService.UserID);
+                var userId = _currentUserService.ID;
                 var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == userId && x.IsActive == true && x.IsDeleted == false, x => x.Role);
                 var response = _mapper.Map<UserDto>(thisUser) ?? new UserDto();
 
                 if (!string.IsNullOrEmpty(thisUser.ImageKey))
                 {
                     response.ImageKey = _fileUploadService.GetFileCompleteUrl(thisUser.ImageKey);
-                }
-
-                if (thisUser.fk_RoleID.Equals(2))
-                {
-                    response.CorporateProfile = _mapper.Map<UserCorporateProfileDto>(_unitOfWork.UserRepository.GetUserCorporateProfile(thisUser.ID));
-                }
-
-                if (thisUser.fk_RoleID.Equals(3))
-                {
-                    response.CandidateProfile = _mapper.Map<UserCandidateProfileDto>(_unitOfWork.UserRepository.GetUserCandidateProfile(thisUser.ID));
                 }
 
                 return response;
@@ -110,6 +101,19 @@ namespace Application.Modules.UserModule
 
         #region UPDATE
 
+        public async Task<bool> StatusUpdateAsync(int id, bool status)
+        {
+            var DoesUserExist = await _unitOfWork.UserRepository.ExistsAsync(x => x.ID == id && x.IsActive == true && x.IsDeleted == false);
+            if (!DoesUserExist)
+            {
+                throw new ClientException("No User Found", HttpStatusCode.NotFound);
+            }
+
+            var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == id && x.IsActive == true && x.IsDeleted == false);
+            thisUser.IsActive = status;
+            _unitOfWork.Complete();
+            return true;
+        }
         public async Task<UserDto> UpdateRequestAsync(UpsertUserRequest model)
         {
             var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == model.ID && x.IsActive == true && x.IsDeleted == false);
@@ -122,7 +126,7 @@ namespace Application.Modules.UserModule
                 thisUser.FirstName = model.FirstName;
                 thisUser.LastName = model.LastName;
                 thisUser.PhoneNumber = model.PhoneNumber;
-                thisUser.UserName = model.UserName;
+                thisUser.Email = model.UserName;
                 thisUser.fk_RoleID = model.fk_RoleID;
                 _unitOfWork.Complete();
             }
@@ -130,7 +134,7 @@ namespace Application.Modules.UserModule
         }
         public async Task<UserDto> UpdateProfilePictureRequestAsync(UpsertProfilePictureRequest model)
         {
-            var userId = Convert.ToInt32(_currentUserService.UserID);
+            var userId = _currentUserService.ID;
             var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == userId && x.IsActive == true && x.IsDeleted == false);
             if (thisUser == null)
             {
@@ -155,7 +159,7 @@ namespace Application.Modules.UserModule
         }
         public async Task<UserDto> UpdateCurrentUserRequestAsync(UpdateCurrentUserRequest model)
         {
-            var userId = Convert.ToInt32(_currentUserService.UserID);
+            var userId = _currentUserService.ID;
             var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.ID == userId && x.IsActive == true && x.IsDeleted == false);
             if (thisUser == null)
             {
@@ -165,7 +169,7 @@ namespace Application.Modules.UserModule
             {
                 thisUser.FirstName = model.FirstName;
                 thisUser.LastName = model.LastName;
-                thisUser.UserName = model.UserName;
+                thisUser.Email = model.UserName;
                 thisUser.DOB = model.DOB;
                 thisUser.Ethnicity = model.Ethnicity;
                 thisUser.Gender = model.Gender;
@@ -204,12 +208,12 @@ namespace Application.Modules.UserModule
                 throw new ClientException("Passwords Dont Match !!", HttpStatusCode.BadRequest);
             }
 
-            if (await _unitOfWork.UserRepository.ExistsAsync(x => x.UserName == request.UserName) || await _unitOfWork.UserRepository.ExistsAsync(x => x.UserName == request.UserName))
+            if (await _unitOfWork.UserRepository.ExistsAsync(x => x.Email == request.UserName) || await _unitOfWork.UserRepository.ExistsAsync(x => x.Email == request.UserName))
             {
                 throw new ClientException("User with this User Name already Exists", HttpStatusCode.BadRequest);
             }
 
-            if (await _unitOfWork.UserRepository.ExistsAsync(x => x.UserName == request.UserName) || await _unitOfWork.UserRepository.ExistsAsync(x => x.UserName == request.UserName))
+            if (await _unitOfWork.UserRepository.ExistsAsync(x => x.Email == request.UserName) || await _unitOfWork.UserRepository.ExistsAsync(x => x.Email == request.UserName))
             {
                 throw new ClientException("User with this UserName already Exists", HttpStatusCode.BadRequest);
             }
@@ -217,34 +221,13 @@ namespace Application.Modules.UserModule
             {
                 FirstName = request?.FirstName,
                 LastName = request?.LastName,
-                UserName = request?.UserName,
+                Email = request?.UserName,
                 PhoneNumber = request?.PhoneNumber,
                 DOB = request.DOB,
                 Password = PasswordHasher.GeneratePasswordHash(request.Password),
                 fk_RoleID = request.RoleID,
             };
-
-            if (request.RoleID.Equals(2))
-            {
-                newUser.CorporateProfile = new UserCorporateProfile
-                {
-                    Corporate = new Domain.Entities.CorporateModule.Corporate
-                    {
-                        Company = request.Company,
-                        HeadQuarterContact = request.HeadQuarterContact,
-                        HeadQuarterName = request.HeadQuarterName
-                    }
-                };
-            }
-            else
-            {
-                newUser.CandidateProfile = new UserCandidateProfile()
-                {
-                    ContactEmail = request.UserName,
-                    ContactPhone = request.PhoneNumber
-                };
-            }
-
+            
             await _unitOfWork.UserRepository.AddAsync(newUser);
             _unitOfWork.Complete();
             return request;
@@ -253,7 +236,7 @@ namespace Application.Modules.UserModule
         {
             try
             {
-                var DoesThisUserExist = await _unitOfWork.UserRepository.ExistsAsync(x => x.UserName == UserName && x.IsActive == true && x.IsDeleted == false);
+                var DoesThisUserExist = await _unitOfWork.UserRepository.ExistsAsync(x => x.Email == UserName && x.IsActive == true && x.IsDeleted == false);
                 if (!DoesThisUserExist)
                 {
                     return new UserLoginResponseModel
@@ -266,7 +249,7 @@ namespace Application.Modules.UserModule
                 {
                     var newPassword = GetRandomPassword();
 
-                    var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.UserName == UserName && x.IsActive == true && x.IsDeleted == false, x => x.Role);
+                    var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.Email == UserName && x.IsActive == true && x.IsDeleted == false, x => x.Role);
                     thisUser.Password = PasswordHasher.GeneratePasswordHash(newPassword);
                     _unitOfWork.Complete();
 
@@ -327,7 +310,7 @@ namespace Application.Modules.UserModule
                         Message = "Old password Cannot Be Same with New Password",
                     };
                 }
-                var userId = Convert.ToInt32(_currentUserService.UserID);
+                var userId = _currentUserService.ID;
                 var DoesThisUserExist = await _unitOfWork.UserRepository.ExistsAsync(x => x.ID == userId && x.IsActive == true && x.IsDeleted == false);
                 if (!DoesThisUserExist)
                 {
@@ -384,7 +367,7 @@ namespace Application.Modules.UserModule
         {
             try
             {
-                var DoesThisUserExist = await _unitOfWork.UserRepository.ExistsAsync(x => x.UserName == UserName && x.IsActive == true && x.IsDeleted == false);
+                var DoesThisUserExist = await _unitOfWork.UserRepository.ExistsAsync(x => x.Email == UserName && x.IsActive == true && x.IsDeleted == false);
                 if (!DoesThisUserExist)
                 {
                     return new UserLoginResponseModel
@@ -395,7 +378,7 @@ namespace Application.Modules.UserModule
                 }
                 else
                 {
-                    var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.UserName == UserName && x.IsActive == true && x.IsDeleted == false, x => x.Role);
+                    var thisUser = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.Email == UserName && x.IsActive == true && x.IsDeleted == false, x => x.Role);
                     if (PasswordHasher.VerifyHash(Password, thisUser.Password ?? string.Empty))
                     {
                         return new UserLoginResponseModel
@@ -437,7 +420,7 @@ namespace Application.Modules.UserModule
         }
         public async Task<bool> DoesExistAsync(string UserName)
         {
-            var IsExist = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.UserName == UserName && x.IsActive == true && x.IsDeleted == false);
+            var IsExist = await _unitOfWork.UserRepository.GetFirstOrDefaultAsync(x => x.Email == UserName && x.IsActive == true && x.IsDeleted == false);
             if (IsExist != null)
             {
                 return true;

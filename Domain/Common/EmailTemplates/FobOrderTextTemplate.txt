@@ -1,0 +1,35 @@
+Thanks for your purchase
+
+
+We're getting your order ready we will notify you when its sent. 
+
+View your order : {{UserInterfaceResource}}/reciepts/{{OrderId}}
+
+
+ITEM : FOB(s) : {{Quantity}} x ${{FobTotal}}
+
+Subtotal : ${{Subtotal}}
+Shipping : ${{ShippingCharges}}
+Discount : -${{DiscountAmount}}
+Order total : $ {{OrderTotal}} 
+
+
+Shipping Address 
+{{sFirstName}} {{sLastName}}
+{{sStreetAddress}}
+{{sTownCity}} , {{sState}} , {{sPostCode}}
+{{sCountry}}
+
+
+Billing Address 
+{{bFirstName}} {{bLastName}}
+{{bStreetAddress}}
+{{bTownCity}} , {{bState}} , {{bPostCode}}
+{{bCountry}}
+
+
+Troubles? 
+We're here to help you
+
+Reply to this email or contact us at
+Info@parkeasy.com

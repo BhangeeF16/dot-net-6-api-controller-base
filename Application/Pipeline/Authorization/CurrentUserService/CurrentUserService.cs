@@ -10,12 +10,19 @@ namespace Application.Pipeline.Authorization.CurrentUserService
         {
             claims = contextAccessor?.HttpContext?.User?.Identities?.First()?.Claims?.ToList() ?? new List<Claim>();
         }
-        public int UserID
+
+        public int ID
         {
             get
             {
-                var UserId = claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Sid, StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
-                return Convert.ToInt32(string.IsNullOrEmpty(UserId) ? 0 : UserId);
+                return Convert.ToInt32(claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Sid, StringComparison.OrdinalIgnoreCase))?.Value);
+            }
+        }
+        public string Email
+        {
+            get
+            {
+                return claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Email, StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
             }
         }
         public string FirstName
@@ -25,25 +32,11 @@ namespace Application.Pipeline.Authorization.CurrentUserService
                 return claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Name, StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
             }
         }
-        public string UserName
+        public int RoleID
         {
             get
             {
-                return claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.NameIdentifier, StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
-            }
-        }
-        public string RoleId
-        {
-            get
-            {
-                return claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Role, StringComparison.OrdinalIgnoreCase))?.Value ?? string.Empty;
-            }
-        }
-        public bool IsUserCandidate
-        {
-            get
-            {
-                return RoleId.Equals("3");
+                return Convert.ToInt32(claims?.FirstOrDefault(x => x.Type.Equals(ClaimTypes.Role, StringComparison.OrdinalIgnoreCase))?.Value);
             }
         }
     }

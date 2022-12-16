@@ -1,7 +1,7 @@
 ﻿#region Imports
 
-using Domain.Common.DataAccessHelpers;
 using Domain.IRepositories.IGenericRepositories;
+using Domain.Models.GeneralModels;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;

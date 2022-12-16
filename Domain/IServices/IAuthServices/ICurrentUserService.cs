@@ -2,10 +2,9 @@
 {
     public interface ICurrentUserService
     {
-        int UserID { get; }
-        string UserName { get; }
+        int ID { get; }
+        int RoleID { get; }
+        string Email { get; }
         string FirstName { get; }
-        string RoleId { get; }
-        bool IsUserCandidate { get; }
     }
 }

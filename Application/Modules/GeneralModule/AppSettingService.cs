@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using Domain.Common.Exceptions;
-using Domain.Common.Models.GeneralModels;
-using Domain.Common.RequestModels.GeneralRequests;
 using Domain.Entities.GeneralModule;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
-using Domain.IServices.IEntityServices.IGenralModule;
+using Domain.IServices.IEntityServices.IGeneralModule;
+using Domain.Models.GeneralModels;
 
 namespace Application.Modules.GeneralModule
 {
@@ -23,26 +22,26 @@ namespace Application.Modules.GeneralModule
             _currentUserService = currentUserService;
         }
         #endregion
-        public async Task<List<AppSettingDto>> ListRequestAsync()
+        public async Task<List<AppSettingModel>> ListRequestAsync()
         {
             try
             {
                 var appSettings = await _unitOfWork.AppsettingsRepository.GetAllAsync();
-                return _mapper.Map<List<AppSettingDto>>(appSettings);
+                return _mapper.Map<List<AppSettingModel>>(appSettings);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public async Task<AppSettingDto> AddRequestAsync(AppSettingDto model)
+        public async Task<AppSettingModel> AddRequestAsync(AppSettingModel model)
         {
             var thisUser = _mapper.Map<AppSetting>(model);
             await _unitOfWork.AppsettingsRepository.AddAsync(thisUser);
             _unitOfWork.Complete();
-            return _mapper.Map<AppSettingDto>(thisUser);
+            return _mapper.Map<AppSettingModel>(thisUser);
         }
-        public async Task<AppSettingDto> UpdateRequestAsync(AppSettingDto model)
+        public async Task<AppSettingModel> UpdateRequestAsync(AppSettingModel model)
         {
             var thisUserAppSettings = await _unitOfWork.AppsettingsRepository.GetFirstOrDefaultAsync(x => x.Id == model.Id);
             if (thisUserAppSettings == null)
@@ -57,7 +56,7 @@ namespace Application.Modules.GeneralModule
                 thisUserAppSettings.Description = model.Description;
                 _unitOfWork.Complete();
             }
-            return await Task.FromResult(_mapper.Map<AppSettingDto>(thisUserAppSettings));
+            return await Task.FromResult(_mapper.Map<AppSettingModel>(thisUserAppSettings));
         }
 
 

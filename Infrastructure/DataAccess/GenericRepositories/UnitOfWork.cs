@@ -1,14 +1,9 @@
 ﻿#region Imports
-using Domain.Common.DataAccessHelpers;
 using Domain.Entities.GeneralModule;
 using Domain.Entities.UsersModule;
-using Domain.IRepositories.ICandidateRepositories;
+using Domain.IRepositories.IEntityRepositories;
 using Domain.IRepositories.IGenericRepositories;
-using Domain.IRepositories.IJobPostModule;
-using Domain.IRepositories.IUsersModule;
-using Infrastructure.DataAccess.EntityRepositories;
-using Infrastructure.DataAccess.EntityRepositories.CandidateModule;
-using Infrastructure.DataAccess.EntityRepositories.JobPostModule;
+using Domain.Models.GeneralModels;
 using Infrastructure.DataAccess.EntityRepositories.UserModule;
 using Infrastructure.Persistence;
 
@@ -29,9 +24,6 @@ public class UnitOfWork : IUnitOfWork
     private readonly ApplicationDbContext _context;
     private readonly ConnectionInfo _connectionInfo;
     private IUserRepository? _userRepository;
-    private ICandidateRepository? _candidateRepository;
-    private IPostRepository? _postRepository;
-    private IJobRepository? _jobPostRepository;
     private IGenericRepository<UserRole>? _roleRepository;
     private IGenericRepository<MiddlewareLog>? _middlewareLogsRepository;
     private IGenericRepository<ApiCallLog>? _apiCallLogsRepository;
@@ -41,33 +33,6 @@ public class UnitOfWork : IUnitOfWork
 
     #region Public Repository Creation properties...
 
-    public ICandidateRepository CandidateRepository
-    {
-        get
-        {
-            if (_candidateRepository == null)
-                _candidateRepository = new CandidateRepository(_context, _connectionInfo);
-            return _candidateRepository;
-        }
-    }
-    public IPostRepository PostRepository
-    {
-        get
-        {
-            if (_postRepository == null)
-                _postRepository = new PostRepository(_context, _connectionInfo);
-            return _postRepository;
-        }
-    }
-    public IJobRepository JobRepository
-    {
-        get
-        {
-            if (_jobPostRepository == null)
-                _jobPostRepository = new JobRepository(_context, _connectionInfo);
-            return _jobPostRepository;
-        }
-    }
     public IUserRepository UserRepository
     {
         get

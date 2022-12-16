@@ -22,9 +22,9 @@ public class LoggingBehaviour
         var requestedPath = $"{context.Request.Scheme}://{context.Request.Host}{context.Request.Path} {context.Request.QueryString}".Trim();
         var userName = "Swagger";
 
-        if (!string.IsNullOrEmpty(_currentUserService.UserName))
+        if (!string.IsNullOrEmpty(_currentUserService.Email))
         {
-            userName = _currentUserService.UserName;
+            userName = _currentUserService.Email;
         }
 
         _logger.LogInformation("API Request: {Name} {@RequestedPath} {@UserName}",

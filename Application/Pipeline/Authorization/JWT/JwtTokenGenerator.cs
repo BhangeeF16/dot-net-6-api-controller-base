@@ -1,6 +1,6 @@
-﻿using Domain.Common.Models.UserModule;
-using Domain.Entities.UsersModule;
+﻿using Domain.Entities.UsersModule;
 using Domain.IServices.IAuthServices;
+using Domain.Models.AuthModels;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -26,9 +26,8 @@ namespace Application.Pipeline.Authorization.JWT
                 var claimsList = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Sid, thisUser?.ID.ToString() ?? string.Empty),
+                    new Claim(ClaimTypes.Email, thisUser?.Email ?? string.Empty),
                     new Claim(ClaimTypes.Name, thisUser?.FirstName ?? string.Empty),
-                    new Claim(ClaimTypes.NameIdentifier, thisUser?.UserName ?? string.Empty),
-                    new Claim(ClaimTypes.Email, thisUser?.UserName ?? string.Empty),
                     new Claim(ClaimTypes.Role, thisUser?.fk_RoleID.ToString() ?? string.Empty),
                 };
 
@@ -49,8 +48,8 @@ namespace Application.Pipeline.Authorization.JWT
                 {
                     UserId = thisUser.ID,
                     FullName = $"{thisUser.FirstName} {thisUser.LastName}",
-                    Email = thisUser.UserName,
-                    UserName = thisUser.UserName,
+                    Email = thisUser.Email,
+                    UserName = thisUser.Email,
                     RoleId = thisUser.fk_RoleID,
                     ExpiryTime = expiresIn,
                     Token = new JwtSecurityTokenHandler().WriteToken(securityToken)

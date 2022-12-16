@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Domain.Common.Exceptions;
-using Domain.Common.Models.UserModule;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
 using Domain.IServices.IEntityServices.IUserModule;
+using Domain.Models.UsersModule;
 
 namespace Application.Modules.UserModule
 {
@@ -51,7 +51,7 @@ namespace Application.Modules.UserModule
         {
             try
             {
-                var RoleId = Convert.ToInt32(_currentUserService.RoleId);
+                var RoleId = Convert.ToInt32(_currentUserService.RoleID);
                 var thisUserRole = await _unitOfWork.RoleRepository.GetFirstOrDefaultAsync(x => x.ID == RoleId);
                 return _mapper.Map<RoleDto>(thisUserRole) ?? new RoleDto();
             }

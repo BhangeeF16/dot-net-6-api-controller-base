@@ -2,6 +2,7 @@
 
 namespace Domain.Entities.GeneralModule
 {
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Gender
     {
         [Description("Male")]
@@ -11,6 +12,7 @@ namespace Domain.Entities.GeneralModule
         [Description("Prefer Not To Answer")]
         PreferNotToAnswer = 3
     }
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Ethnicity
     {
         [Description("American Indian")]
@@ -24,6 +26,7 @@ namespace Domain.Entities.GeneralModule
         [Description("White")]
         White = 5,
     }
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum CommunicationPreference
     {
         [Description("Email")]
@@ -33,6 +36,7 @@ namespace Domain.Entities.GeneralModule
         [Description("Both")]
         Both = 3,
     }
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum BillAfter
     {
         [Description("Day(s)")]
@@ -44,6 +48,7 @@ namespace Domain.Entities.GeneralModule
         [Description("Year(s)")]
         Year = 4,
     }
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum LevelOfEdujcation
     {
         [Description("Matric/O-Levels")]
@@ -59,6 +64,7 @@ namespace Domain.Entities.GeneralModule
         [Description("Dr. of Philosopy")]
         Philosophy = 5,
     }
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum WorkPlaceType
     {
         [Description("Remote")]
@@ -68,6 +74,7 @@ namespace Domain.Entities.GeneralModule
         [Description("On-Site")]
         OnSite = 3
     }
+    //[JsonConverter(typeof(JsonStringEnumConverter))]
     public enum JobType
     {
         [Description("Full-time")]

@@ -12,7 +12,7 @@ namespace Domain.Entities.UsersModule
 
         [Required]
         [MaxLength(100)]
-        public string? UserName { get; set; }
+        public string? Email { get; set; }
         [Required]
         [MaxLength(450)]
         public string? Password { get; set; }
@@ -34,16 +34,13 @@ namespace Domain.Entities.UsersModule
         public CommunicationPreference? CommunicationPreference { get; set; }
         [MaxLength(50)]
         public string? ImageKey { get; set; }
-        public bool? IsOnBoarded { get; set; } = false;
         public bool IsPasswordChanged { get; set; } = false;
 
         [ForeignKey("Role")]
         public int fk_RoleID { get; set; }
 
         public virtual UserRole? Role { get; set; }
-        public virtual UserCorporateProfile? CorporateProfile { get; set; }
-        public virtual UserCandidateProfile? CandidateProfile { get; set; }
-        public virtual List<UserStripeDetail>? StripeDetails { get; set; }
-        public virtual List<UserShippingAddress>? ShippingAddresses { get; set; }
+        public virtual UserStripeDetail? StripeDetail { get; set; }
+        public virtual UserShippingAddress? ShippingAddress { get; set; }
     }
 }

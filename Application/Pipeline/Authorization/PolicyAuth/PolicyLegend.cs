@@ -4,9 +4,9 @@
     {
         #region Admin Only Policies
 
+        public const string ApplicationAdminOnly = "ApplicationAdminOnly";
         public const string AdminOnly = "AdminOnly";
-        public const string CandidateOnly = "CandidateOnly";
-        public const string CorporateOnly = "CorporateOnly";
+        public const string UserOnly = "UserOnly";
 
         #endregion
 

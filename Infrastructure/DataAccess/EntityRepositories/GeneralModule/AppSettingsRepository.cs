@@ -1,6 +1,6 @@
-﻿using Domain.Common.DataAccessHelpers;
-using Domain.Entities.GeneralModule;
-using Domain.IRepositories.IGeneralModule;
+﻿using Domain.Entities.GeneralModule;
+using Domain.IRepositories.IEntityRepositories;
+using Domain.Models.GeneralModels;
 using Infrastructure.DataAccess.GenericRepositories;
 using Infrastructure.Persistence;
 

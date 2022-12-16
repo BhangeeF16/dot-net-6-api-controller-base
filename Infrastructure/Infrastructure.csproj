@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="StoredProcedures\jf_GetJobPosts.sql" />
+    <None Remove="StoredProcedures\jf_GetCorporates.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="StoredProcedures\jf_GetJobPosts.sql">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="StoredProcedures\jf_GetCorporates.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

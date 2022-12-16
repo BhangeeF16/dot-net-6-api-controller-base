@@ -42,7 +42,7 @@ namespace Domain.Common.Utilities
         {
             // Create a MemoryStream that is going to accept the decrypted bytes 
             var ms = new MemoryStream();
-            var alg = Rijndael.Create();
+            var alg = Aes.Create();
             alg.Key = Key;
             alg.IV = IV;
 
@@ -58,7 +58,7 @@ namespace Domain.Common.Utilities
         {
             // Create a MemoryStream that is going to accept the encrypted bytes 
             var ms = new MemoryStream();
-            var alg = Rijndael.Create();
+            var alg = Aes.Create();
             alg.Key = Key;
             alg.IV = IV;
 

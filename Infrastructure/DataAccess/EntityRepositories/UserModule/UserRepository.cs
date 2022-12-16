@@ -1,13 +1,11 @@
-﻿using Domain.Common.DataAccessHelpers;
-using Domain.Common.Models.CorporateModule;
-using Domain.Common.Models.UserModule;
-using Domain.Entities.CorporateModule;
+﻿using Domain.Common.Constants;
 using Domain.Entities.UsersModule;
-using Domain.IRepositories.IGenericRepositories;
-using Domain.IRepositories.IUsersModule;
+using Domain.IRepositories.IEntityRepositories;
+using Domain.Models.GeneralModels;
+using Domain.Models.Pagination;
 using Infrastructure.DataAccess.GenericRepositories;
 using Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace Infrastructure.DataAccess.EntityRepositories.UserModule;
 
@@ -24,43 +22,14 @@ public class UserRepository : GenericRepository<User>, IUserRepository
 
     #region Inner-Repositories
 
-    private IGenericRepository<Corporate>? _corporateRepository;
-    private IGenericRepository<UserCorporateProfile>? _userCorporateProfileRepository;
-    public IGenericRepository<Corporate> CorporateRepository
-    {
-        get
-        {
-            if (_corporateRepository == null)
-                _corporateRepository = new GenericRepository<Corporate>(_context, _connectionInfo);
-            return _corporateRepository;
-        }
-    }
-    public IGenericRepository<UserCorporateProfile> UserCorporateProfileRepository
-    {
-        get
-        {
-            if (_userCorporateProfileRepository == null)
-                _userCorporateProfileRepository = new GenericRepository<UserCorporateProfile>(_context, _connectionInfo);
-            return _userCorporateProfileRepository;
-        }
-    }
 
     #endregion
 
     #region Methods
 
-    public UserCandidateProfile GetUserCandidateProfile(int UserId)
+    public async Task<PaginatedList<TResponse>> GetAllCandidatesAsync<TResponse>(Pagination pagination) where TResponse : class
     {
-        return _dbContext.UserCandidateProfiles.Include(x => x.CandidateResumeUploadDetails).FirstOrDefault(x => x.fk_UserID == UserId && x.IsActive == true && x.IsDeleted == false) ?? new UserCandidateProfile();
-    }
-    public UserCorporateProfile GetUserCorporateProfile(int UserId)
-    {
-        return _dbContext.Users.Include(x => x.CorporateProfile).FirstOrDefault(x => x.ID == UserId && x.IsActive == true && x.IsDeleted == false).CorporateProfile ?? new UserCorporateProfile();
-    }
-    public Corporate GetCorporateOfUser(int UserId)
-    {
-        var profile = _dbContext.Users.Include(x => x.CorporateProfile).FirstOrDefault(x => x.ID == UserId && x.IsActive == true && x.IsDeleted == false).CorporateProfile ?? new UserCorporateProfile();
-        return _dbContext.Corporates.FirstOrDefault(x => x.ID == profile.fk_CorporateID && x.IsActive == true && x.IsDeleted == false) ?? new Corporate();
+        return await ExecuteSqlStoredProcedureAsync<TResponse>(StoredProceduresLegend.GetCandidates, pagination, new List<SqlParameter>());
     }
 
     #endregion

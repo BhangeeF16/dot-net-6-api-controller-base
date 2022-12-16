@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Domain.Common.DTO.Pagination;
+using Domain.Models.Pagination;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domain.IServices.IMapperServices;

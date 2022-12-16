@@ -2,9 +2,7 @@
 
 using Domain.Entities.GeneralModule;
 using Domain.Entities.UsersModule;
-using Domain.IRepositories.ICandidateRepositories;
-using Domain.IRepositories.IJobPostModule;
-using Domain.IRepositories.IUsersModule;
+using Domain.IRepositories.IEntityRepositories;
 
 #endregion
 
@@ -16,11 +14,6 @@ public interface IUnitOfWork : IDisposable
 
     IUserRepository UserRepository { get; }
     IGenericRepository<UserRole> RoleRepository { get; }
-
-    ICandidateRepository CandidateRepository { get; }
-
-    IPostRepository PostRepository { get; }
-    IJobRepository JobRepository { get; }
 
     IGenericRepository<MiddlewareLog> MiddlewareLogsRepository { get; }
     IGenericRepository<ApiCallLog> ApiCallLogsRepository { get; }

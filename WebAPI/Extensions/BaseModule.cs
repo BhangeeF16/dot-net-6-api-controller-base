@@ -1,7 +1,7 @@
 ﻿using Domain.Common.Exceptions;
-using Domain.Common.Models.GeneralModels;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
+using Domain.Models.GeneralModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -30,7 +30,7 @@ namespace WebAPI.Extensions
             }
             catch (DbUpdateException dbEx)
             {
-                response = Results.Ok(new ErrorResponseModel
+                response = Results.Extensions.InternalServerProblem(new ErrorResponseModel
                 {
                     Message = dbEx.InnerException?.Message ?? dbEx.Message,
                     Result = new ErrorDetailResponseModel()
@@ -63,7 +63,7 @@ namespace WebAPI.Extensions
                     StatusCode = customEx?.StatusCode ?? HttpStatusCode.InternalServerError,
                     Success = false
                 };
-                switch (customEx?.StatusCode ?? HttpStatusCode.InternalServerError)
+                switch (customEx.StatusCode)
                 {
                     case HttpStatusCode.BadRequest:
                         response = Results.BadRequest(ErrorModel);
@@ -104,7 +104,7 @@ namespace WebAPI.Extensions
             {
                 if (ex.InnerException is ValidationException)
                 {
-                    response = Results.Ok(new ErrorResponseModel
+                    response = Results.BadRequest(new ErrorResponseModel
                     {
                         Message = ex.InnerException?.Message ?? ex.Message,
                         Result = new ErrorDetailResponseModel()
@@ -121,7 +121,7 @@ namespace WebAPI.Extensions
                 }
                 else
                 {
-                    response = Results.Ok(new ErrorResponseModel
+                    response = Results.Extensions.InternalServerProblem(new ErrorResponseModel
                     {
                         Message = ex.InnerException?.Message ?? ex.Message,
                         Result = new ErrorDetailResponseModel()
@@ -148,7 +148,7 @@ namespace WebAPI.Extensions
             }
             catch (DbUpdateException dbEx)
             {
-                response = Results.Ok(new ErrorResponseModel
+                response = Results.Extensions.InternalServerProblem(new ErrorResponseModel
                 {
                     Message = dbEx.InnerException?.Message ?? dbEx.Message,
                     Result = new ErrorDetailResponseModel()

@@ -77,21 +77,21 @@ namespace Application.Pipeline.Authorization
 
                 //Application Admin only Policy
                 options.AddPolicy(
-                    PolicyLegend.AdminOnly,
+                    PolicyLegend.ApplicationAdminOnly,
                     policyBuilder => policyBuilder
                                         .RequireClaim(ClaimTypes.Role).RequireRole("1"));
 
                 //Application CorporateOnly Policy
                 options.AddPolicy(
-                    PolicyLegend.CorporateOnly,
+                    PolicyLegend.AdminOnly,
                     policyBuilder => policyBuilder
-                                        .RequireClaim(ClaimTypes.Role).RequireRole("2"));
+                                        .RequireClaim(ClaimTypes.Role).RequireRole("2","1"));
 
                 //Application CandidateOnly Policy
                 options.AddPolicy(
-                    PolicyLegend.CandidateOnly,
+                    PolicyLegend.UserOnly,
                     policyBuilder => policyBuilder
-                                        .RequireClaim(ClaimTypes.Role).RequireRole("3"));
+                                        .RequireClaim(ClaimTypes.Role).RequireRole("3", "1"));
             });
 
             services.AddScoped<IAuthorizationHandler, IsAllowedRequirementHandler>();

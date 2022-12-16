@@ -10,7 +10,7 @@ namespace Domain.Entities.UsersModule
         [Key]
         public int ID { get; set; }
         public string? CustomerID { get; set; }
-        public string? ConnectedAccountID { get; set; }
+        public string? ConnectAccountID { get; set; }
 
 
         [ForeignKey("User")]

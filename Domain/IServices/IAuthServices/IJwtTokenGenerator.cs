@@ -1,5 +1,5 @@
-﻿using Domain.Common.Models.UserModule;
-using Domain.Entities.UsersModule;
+﻿using Domain.Entities.UsersModule;
+using Domain.Models.AuthModels;
 
 namespace Domain.IServices.IAuthServices
 {

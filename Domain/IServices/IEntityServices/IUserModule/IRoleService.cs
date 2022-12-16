@@ -1,4 +1,4 @@
-﻿using Domain.Common.Models.UserModule;
+﻿using Domain.Models.UsersModule;
 
 namespace Domain.IServices.IEntityServices.IUserModule
 {
