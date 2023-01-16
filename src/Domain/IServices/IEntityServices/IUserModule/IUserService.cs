@@ -1,6 +1,6 @@
 ﻿using Domain.Models.UsersModule;
 using Domain.RequestModels.UserRequests;
-using Domain.ResponseModels;
+using Domain.ResponseModels.UserResponses;
 
 namespace Domain.IServices.IEntityServices.IUserModule
 {

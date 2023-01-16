@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using Domain.IServices.IHelperServices;
 using System.Reflection;
 
-namespace Domain.Common.MapperService
+namespace Domain.Common.Utilities
 {
     public class MappingProfiles : Profile
     {

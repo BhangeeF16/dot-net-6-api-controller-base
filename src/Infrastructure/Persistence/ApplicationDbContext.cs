@@ -4,6 +4,7 @@ using Domain.Common.DomainEvent;
 using Domain.Entities.GeneralModule;
 using Domain.Entities.UsersModule;
 using Domain.IServices.IAuthServices;
+using Domain.IServices.IUtilities;
 using Domain.Models.GeneralModels;
 using Microsoft.EntityFrameworkCore;
 

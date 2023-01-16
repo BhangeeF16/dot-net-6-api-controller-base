@@ -6,7 +6,7 @@ public static class IConfigurationExtensions
 {
     public static string GetConnectionString(this IConfiguration configuration)
     {
-        return configuration.GetSetting("SQLSERVER_GIGPANEL", "ConnectionStrings");
+        return configuration.GetSetting("SQLSERVER_CON_STR", "ConnectionStrings");
     }
     private static string GetSetting(this IConfiguration config, string Key, string Section = "")
     {

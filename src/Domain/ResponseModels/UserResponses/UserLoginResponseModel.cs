@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.UsersModule;
 
-namespace Domain.ResponseModels
+namespace Domain.ResponseModels.UserResponses
 {
     public class UserLoginResponseModel
     {

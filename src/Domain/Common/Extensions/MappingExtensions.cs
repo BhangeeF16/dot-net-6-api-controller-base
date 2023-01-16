@@ -3,7 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Domain.Models.Pagination;
 using Microsoft.EntityFrameworkCore;
 
-namespace Domain.IServices.IMapperServices;
+namespace Domain.Common.Extensions;
 
 public static class MappingExtensions
 {

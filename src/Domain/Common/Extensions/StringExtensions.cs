@@ -39,10 +39,6 @@ namespace Domain.Common.Extensions
             }
             return intList;
         }
-        public static bool IsDriver(this string RoleId)
-        {
-            return RoleId == "2";
-        }
         public static DateTime ToDateTime(this string HexaDecimalTimeStamp)
         {
             var timestamp = HexaDecimalTimeStamp.ToInt();

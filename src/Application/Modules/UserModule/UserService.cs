@@ -8,7 +8,7 @@ using Domain.IServices.IEntityServices.IUserModule;
 using Domain.IServices.IHelperServices;
 using Domain.Models.UsersModule;
 using Domain.RequestModels.UserRequests;
-using Domain.ResponseModels;
+using Domain.ResponseModels.UserResponses;
 using System.Net;
 
 namespace Application.Modules.UserModule

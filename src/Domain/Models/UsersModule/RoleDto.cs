@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Entities.UsersModule;
-using Domain.IServices.IMapperServices;
+using Domain.IServices.IHelperServices;
 
 namespace Domain.Models.UsersModule
 {

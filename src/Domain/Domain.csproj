@@ -7,27 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Common\HtmlTemplates\EducationExpeienceListItem.html" />
-    <None Remove="Common\HtmlTemplates\ForgetPasswordTemplate.html" />
-    <None Remove="Common\HtmlTemplates\JobExpeienceListItem.html" />
-    <None Remove="Common\HtmlTemplates\ResumeTemplate.html" />
-    <None Remove="Common\HtmlTemplates\ResumeTemplateForCVGenrator.html" />
+    <None Remove="Common\Templates\EmailTemplates\FobOrderedTemplate.html" />
+    <None Remove="Common\Templates\HtmlTemplates\EducationExpeienceListItem.html" />
+    <None Remove="Common\Templates\HtmlTemplates\ForgetPasswordTemplate.html" />
+    <None Remove="Common\Templates\HtmlTemplates\JobExpeienceListItem.html" />
+    <None Remove="Common\Templates\HtmlTemplates\ResumeTemplate.html" />
+    <None Remove="Common\Templates\HtmlTemplates\ResumeTemplateForCVGenrator.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Common\HtmlTemplates\EducationExpeienceListItem.html">
+    <Resource Include="Common\Templates\EmailTemplates\FobOrderedTemplate.html" />
+    <Content Include="Common\Templates\HtmlTemplates\EducationExpeienceListItem.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Common\HtmlTemplates\ForgetPasswordTemplate.html">
+    <Content Include="Common\Templates\HtmlTemplates\ForgetPasswordTemplate.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Common\HtmlTemplates\JobExpeienceListItem.html">
+    <Content Include="Common\Templates\HtmlTemplates\JobExpeienceListItem.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Common\HtmlTemplates\ResumeTemplate.html">
+    <Content Include="Common\Templates\HtmlTemplates\ResumeTemplate.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Common\HtmlTemplates\ResumeTemplateForCVGenrator.html">
+    <Content Include="Common\Templates\HtmlTemplates\ResumeTemplateForCVGenrator.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

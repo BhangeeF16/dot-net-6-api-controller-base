@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Domain.Common.DomainEvent;
+namespace Domain.IServices.IUtilities;
 
 public interface IHasDomainEventEntity
 {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations.Schema;
+using Domain.IServices.IUtilities;
 
 namespace Domain.Common.DomainEvent;
 
