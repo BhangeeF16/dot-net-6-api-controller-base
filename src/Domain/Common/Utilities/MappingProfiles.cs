@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Domain.IServices.IHelperServices;
+using Domain.IServices.IUtilities;
 using System.Reflection;
 
 namespace Domain.Common.Utilities

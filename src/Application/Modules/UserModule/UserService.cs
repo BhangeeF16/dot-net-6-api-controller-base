@@ -5,7 +5,7 @@ using Domain.Entities.UsersModule;
 using Domain.IRepositories.IGenericRepositories;
 using Domain.IServices.IAuthServices;
 using Domain.IServices.IEntityServices.IUserModule;
-using Domain.IServices.IHelperServices;
+using Domain.IServices.IUtilities;
 using Domain.Models.UsersModule;
 using Domain.RequestModels.UserRequests;
 using Domain.ResponseModels.UserResponses;

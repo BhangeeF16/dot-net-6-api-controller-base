@@ -1,4 +1,4 @@
-﻿using Domain.IServices.IHelperServices;
+﻿using Domain.IServices.IUtilities;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.UtilityServices;

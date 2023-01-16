@@ -2,7 +2,7 @@
 using Domain.Common.Extensions;
 using Domain.Entities.GeneralModule;
 using Domain.Entities.UsersModule;
-using Domain.IServices.IHelperServices;
+using Domain.IServices.IUtilities;
 
 namespace Domain.Models.UsersModule
 {

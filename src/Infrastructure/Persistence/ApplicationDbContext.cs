@@ -38,7 +38,6 @@ namespace Infrastructure.Persistence
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_connectionInfo.ConnectionString, b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
-            //optionsBuilder.EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

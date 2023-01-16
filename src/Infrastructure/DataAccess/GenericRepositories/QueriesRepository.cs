@@ -1,4 +1,5 @@
-﻿using Domain.IRepositories.IGenericRepositories;
+﻿using Domain.Common.Extensions;
+using Domain.IRepositories.IGenericRepositories;
 using Domain.Models.GeneralModels;
 using Domain.Models.Pagination;
 using Infrastructure.Persistence;

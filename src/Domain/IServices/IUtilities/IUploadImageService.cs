@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Domain.IServices.IHelperServices
+namespace Domain.IServices.IUtilities
 {
     public interface IUploadImageService
     {

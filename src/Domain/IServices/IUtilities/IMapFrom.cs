@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Domain.IServices.IHelperServices;
+namespace Domain.IServices.IUtilities;
 
 public interface IMapFrom<T>
 {
