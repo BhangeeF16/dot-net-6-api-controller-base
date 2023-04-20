@@ -7,5 +7,5 @@ Implemented Application Settings
 Implemented SMTP Credentials
 Seeded Role and Default Admin User
 
-# Author: BNG016
+# Author: bhangeef16
 # Email: bngf16@gmail.com
