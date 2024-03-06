@@ -9,19 +9,30 @@
 Here're some of the project's best features:
 
 *   Controller Base API
-*   Implemented Current User Service
 *   Implemented Pipeline of Middlewares
 *   Implemented Application Settings
-*   Implemented SMTP Credentials
 *   Seeded Role and Default Admin User
+- **Current User Service Implementation**: The project includes a robust Current User Service to manage user-related operations efficiently.
+- **Middleware Pipeline**: A well-structured pipeline of middlewares is implemented to handle various request/response processing stages effectively.
+- **SMTP Credentials Integration**: SMTP credentials are integrated into the project to facilitate email functionalities.
+- **Role and Default Admin User Seeding**: The initial setup includes seeding of roles and a default admin user for quick start and testing purposes.
+- **Twilio API Integration**: Integration with Twilio API is added to support OTP generation and other SMS-related functionalities.
+- **User Related API Endpoints**: Essential API endpoints related to user management are implemented, providing necessary functionalities for user operations.
 
-<h2>🛠️ Installation Steps:</h2>
+</br><h2>🛠️ Installation Steps:</h2>
 
 <p>1. Clone the repo ```git clone https://github.com/BhangeeF16/dot-net-6-api-controller-base.git``` </p>
 
-<p>2. Configure App Settings</p>
+<p>2. Configure necessary environment variables such as SMTP credentials, Twilio API keys, etc.</p>
 
 <p>3. Add DB Migration ```add-migration init``` </p>
+<p>4. Run the project and explore the implemented functionalities and endpoints. </p>
+<p>5. Customize and extend the base project according to your specific application requirements.</p>
+
+<h2> Requirements </h2>
+
+*  .NET 6 SDK 
+*  IDE or text editor of your choice (e.g., Visual Studio, Visual Studio Code) 
 
 <h2>🍰 Contribution Guidelines:</h2>
 
@@ -35,6 +46,11 @@ Contributions are what make the open source community such an amazing place to b
 * Commit your Changes (git commit -m 'Add some AmazingFeature') 
 * Push to the Branch (git push origin feature/AmazingFeature) Open a Pull Request
   
+## License
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+Special thanks to the contributors and open-source community for their valuable contributions and resources.
   
 <h2>💻 Built with</h2>
 
